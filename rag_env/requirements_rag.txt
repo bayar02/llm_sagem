@@ -1,0 +1,33 @@
+# Dépendances additionnelles pour la couche RAG / Agentic IA
+# À installer en plus de requirements.txt existant (streamlit, PyMuPDF, pdfplumber, ...)
+#
+#   pip install -r requirements.txt -r requirements_rag.txt
+
+# --- LLM ---
+anthropic>=0.34.0          # API Claude — déjà envisagé dans le projet (voir mtp_analyzer.py)
+openai>=1.40.0              # optionnel : bascule vers GPT si quota Claude épuisé
+# xai-sdk / requests        # Grok — pas de SDK officiel stable, appel via requests + endpoint xAI
+
+# --- Embeddings (Claude n'a pas d'endpoint d'embeddings natif) ---
+voyageai>=0.2.3              # embeddings recommandés par Anthropic (voyage-3, voyage-3-lite)
+sentence-transformers>=3.0.0 # fallback 100% local/gratuit (ex. BAAI/bge-m3), utile hors ligne
+
+# --- Base vectorielle ---
+qdrant-client>=1.10.0
+
+# --- Découpage / RAG ---
+tiktoken>=0.7.0              # comptage de tokens (approximatif pour Claude, exact pour GPT)
+rank-bm25>=0.2.2             # recherche lexicale (BM25) pour la recherche hybride
+
+# --- OCR / traitement des images dans les PDFs ---
+pytesseract>=0.3.10          # nécessite le binaire tesseract-ocr installé sur le poste
+pdf2image>=1.17.0            # nécessite poppler-utils / poppler pour Windows
+Pillow>=10.0.0
+
+# --- Agentic IA ---
+crewai>=0.51.0               # orchestration multi-agents
+crewai-tools>=0.8.0
+
+# --- Divers ---
+python-dotenv>=1.0.0
+requests>=2.32.0

@@ -1,0 +1,176 @@
+{
+  "FE_Tests": [
+    {
+      "Test": "Test#1",
+      "Frequency": "74MHz",
+      "Modulation": "64QAM DVB-C",
+      "Limits": [
+        {
+          "Parameter": "Viterbi BER",
+          "Min": "50",
+          "Max": "2000",
+          "Unit": ""
+        },
+        {
+          "Parameter": "Uncorrected blocks",
+          "Min": "0",
+          "Max": "0",
+          "Unit": ""
+        },
+        {
+          "Parameter": "RSSI",
+          "Min": "-69",
+          "Max": "-63",
+          "Unit": "dBm"
+        },
+        {
+          "Parameter": "Carrier-to-Noise Ratio",
+          "Min": "25",
+          "Max": "27",
+          "Unit": "dB"
+        },
+        {
+          "Parameter": "Frequency Offset",
+          "Min": "-20",
+          "Max": "20",
+          "Unit": "kHz"
+        },
+        {
+          "Parameter": "Rate Offset",
+          "Min": "-50",
+          "Max": "50",
+          "Unit": "ppm"
+        }
+      ]
+    },
+    {
+      "Test": "Test#2",
+      "Frequency": "386MHz",
+      "Modulation": "256QAM DVB-C",
+      "Limits": [
+        {
+          "Parameter": "Viterbi BER",
+          "Min": "50",
+          "Max": "2000",
+          "Unit": ""
+        },
+        {
+          "Parameter": "Uncorrected blocks",
+          "Min": "0",
+          "Max": "0",
+          "Unit": ""
+        },
+        {
+          "Parameter": "RSSI",
+          "Min": "-58",
+          "Max": "-52",
+          "Unit": "dBm"
+        },
+        {
+          "Parameter": "Carrier-to-Noise Ratio",
+          "Min": "31",
+          "Max": "33",
+          "Unit": "dB"
+        },
+        {
+          "Parameter": "Frequency Offset",
+          "Min": "-20",
+          "Max": "20",
+          "Unit": "kHz"
+        },
+        {
+          "Parameter": "Rate Offset",
+          "Min": "-50",
+          "Max": "50",
+          "Unit": "ppm"
+        }
+      ]
+    },
+    {
+      "Test": "Test#3",
+      "Frequency": "666MHz",
+      "Modulation": "64QAM DVB-C",
+      "Limits": [
+        {
+          "Parameter": "Viterbi BER",
+          "Min": "50",
+          "Max": "2000",
+          "Unit": ""
+        },
+        {
+          "Parameter": "Uncorrected blocks",
+          "Min": "0",
+          "Max": "0",
+          "Unit": ""
+        },
+        {
+          "Parameter": "RSSI",
+          "Min": "-69",
+          "Max": "-63",
+          "Unit": "dBm"
+        },
+        {
+          "Parameter": "Carrier-to-Noise Ratio",
+          "Min": "25",
+          "Max": "27",
+          "Unit": "dB"
+        },
+        {
+          "Parameter": "Frequency Offset",
+          "Min": "-20",
+          "Max": "20",
+          "Unit": "kHz"
+        },
+        {
+          "Parameter": "Rate Offset",
+          "Min": "-50",
+          "Max": "50",
+          "Unit": "ppm"
+        }
+      ]
+    },
+    {
+      "Test": "Test#4",
+      "Frequency": "850MHz",
+      "Modulation": "256QAM DVB-C",
+      "Limits": [
+        {
+          "Parameter": "Viterbi BER",
+          "Min": "50",
+          "Max": "2000",
+          "Unit": ""
+        },
+        {
+          "Parameter": "Uncorrected blocks",
+          "Min": "0",
+          "Max": "0",
+          "Unit": ""
+        },
+        {
+          "Parameter": "RSSI",
+          "Min": "-58",
+          "Max": "-52",
+          "Unit": "dBm"
+        },
+        {
+          "Parameter": "Carrier-to-Noise Ratio",
+          "Min": "31",
+          "Max": "33",
+          "Unit": "dB"
+        },
+        {
+          "Parameter": "Frequency Offset",
+          "Min": "-20",
+          "Max": "20",
+          "Unit": "kHz"
+        },
+        {
+          "Parameter": "Rate Offset",
+          "Min": "-50",
+          "Max": "50",
+          "Unit": "ppm"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide — ICP to MTP Analysis & Reporting Tool</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --primary: #0057b8;
+  --primary-dark: #003d80;
+  --primary-light: #dbeafe;
+  --accent: #f59e0b;
+  --accent-light: #fef3c7;
+  --success: #10b981;
+  --success-light: #d1fae5;
+  --danger: #ef4444;
+  --danger-light: #fee2e2;
+  --warning: #f59e0b;
+  --warning-light: #fef3c7;
+  --purple: #8b5cf6;
+  --purple-light: #ede9fe;
+  --teal: #0891b2;
+  --teal-light: #cffafe;
+  --bg: #f0f4f8;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --sidebar-w: 280px;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── SIDEBAR ── */
+#sidebar {
+  width: var(--sidebar-w);
+  background: var(--primary-dark);
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.sidebar-logo span {
+  font-size: 28px;
+}
+
+.sidebar-logo h1 {
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+.sidebar-subtitle {
+  color: rgba(255,255,255,0.55);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.sidebar-progress {
+  padding: 16px 20px 8px;
+}
+
+.progress-label {
+  color: rgba(255,255,255,0.6);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+  width: 14%;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 8px 12px 20px;
+}
+
+.nav-section-label {
+  color: rgba(255,255,255,0.4);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 16px 8px 6px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: rgba(255,255,255,0.65);
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 2px;
+}
+
+.nav-item:hover { background: rgba(255,255,255,0.08); color: white; }
+.nav-item.active { background: var(--accent); color: var(--primary-dark); font-weight: 700; }
+
+.nav-item .nav-icon { font-size: 16px; flex-shrink: 0; }
+.nav-item .nav-num {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  font-size: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.nav-item.active .nav-num { background: rgba(0,0,0,0.2); }
+.nav-item.done .nav-num { background: var(--success); color: white; }
+.nav-item.done { color: rgba(255,255,255,0.75); }
+
+/* ── MAIN ── */
+#main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-height: 100vh;
+}
+
+.section {
+  display: none;
+  animation: fadeIn 0.4s ease;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+}
+
+.section.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SECTION HEADER ── */
+.section-header {
+  margin-bottom: 36px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.section-lead {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 640px;
+  line-height: 1.7;
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: box-shadow 0.2s;
+}
+
+.info-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+.info-card-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.info-card h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.info-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── STEPS ── */
+.step-list { display: flex; flex-direction: column; gap: 0; }
+
+.step-item {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+}
+
+.step-item:last-child { border-bottom: none; }
+.step-item:hover { background: #f8fafc; }
+
+.step-num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  font-weight: 800;
+  font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-content { flex: 1; }
+.step-content h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.step-content p { font-size: 13px; color: var(--text-muted); }
+
+.step-arrow { color: var(--text-muted); font-size: 18px; align-self: center; }
+
+/* ── CALLOUTS ── */
+.callout {
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 16px 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.callout-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+
+.callout-body h4 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+.callout-body p, .callout-body li { font-size: 13px; line-height: 1.5; }
+.callout-body ul { padding-left: 16px; }
+
+.callout.tip { background: var(--success-light); border-left: 4px solid var(--success); }
+.callout.warning { background: var(--warning-light); border-left: 4px solid var(--warning); }
+.callout.danger { background: var(--danger-light); border-left: 4px solid var(--danger); }
+.callout.info { background: var(--primary-light); border-left: 4px solid var(--primary); }
+.callout.note { background: var(--purple-light); border-left: 4px solid var(--purple); }
+
+/* ── MODULE BADGES ── */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.module-card {
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  position: relative;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.module-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+
+.module-card .mod-icon { font-size: 24px; margin-bottom: 8px; }
+.module-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.module-card p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+.mod-badge {
+  position: absolute;
+  top: 12px; right: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.mod-required { background: var(--danger-light); color: #991b1b; }
+.mod-optional { background: var(--success-light); color: #065f46; }
+
+.module-card.fe { border-top: 3px solid #0057b8; }
+.module-card.rf { border-top: 3px solid #0891b2; }
+.module-card.bt { border-top: 3px solid #8b5cf6; }
+.module-card.bl { border-top: 3px solid #f59e0b; }
+.module-card.sys { border-top: 3px solid #10b981; }
+.module-card.fw { border-top: 3px solid #64748b; }
+
+/* ── SCREEN MOCKUP ── */
+.mockup {
+  background: #1e293b;
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 20px 0;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.mockup-bar {
+  background: #0f172a;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mockup-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+
+.mockup-dot.red { background: #ef4444; }
+.mockup-dot.yellow { background: #f59e0b; }
+.mockup-dot.green { background: #10b981; }
+
+.mockup-url {
+  background: #1e293b;
+  border-radius: 6px;
+  padding: 4px 12px;
+  color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  flex: 1;
+  text-align: center;
+}
+
+.mockup-body {
+  padding: 20px;
+  background: #f0f4f8;
+}
+
+.mockup-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  background: white;
+  padding: 6px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  overflow-x: auto;
+}
+
+.mockup-tab {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #64748b;
+}
+
+.mockup-tab.active {
+  background: #0057b8;
+  color: white;
+}
+
+.mockup-form {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  padding: 16px;
+}
+
+.mockup-field {
+  margin-bottom: 12px;
+}
+
+.mockup-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.mockup-input {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 12px;
+  color: #475569;
+  width: 100%;
+}
+
+.mockup-input.filled {
+  background: #f0fdf4;
+  border-color: #86efac;
+  color: #0f172a;
+}
+
+.mockup-btn {
+  background: #0057b8;
+  color: white;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.mockup-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  margin: 2px;
+}
+
+.badge-blue { background: #dbeafe; color: #1e40af; }
+.badge-green { background: #d1fae5; color: #065f46; }
+.badge-yellow { background: #fef3c7; color: #92400e; }
+
+/* ── ACCORDION ── */
+.accordion-item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.accordion-header {
+  padding: 16px 20px;
+  background: var(--surface);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.accordion-header:hover { background: #f8fafc; }
+
+.accordion-header h3 { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+
+.accordion-chevron {
+  transition: transform 0.3s;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.accordion-item.open .accordion-chevron { transform: rotate(180deg); }
+
+.accordion-body {
+  display: none;
+  padding: 0 20px 20px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.accordion-item.open .accordion-body { display: block; padding-top: 16px; }
+
+/* ── QUIZ ── */
+.quiz-box {
+  background: linear-gradient(135deg, #0057b8, #0891b2);
+  border-radius: 14px;
+  padding: 28px;
+  color: white;
+  margin: 20px 0;
+}
+
+.quiz-question { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quiz-option {
+  background: rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.quiz-option:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.4); }
+.quiz-option.correct { background: rgba(16,185,129,0.3); border-color: #10b981; }
+.quiz-option.wrong { background: rgba(239,68,68,0.3); border-color: #ef4444; }
+
+.quiz-result {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  display: none;
+  font-weight: 500;
+}
+
+.quiz-result.correct { background: rgba(16,185,129,0.25); border: 1px solid rgba(16,185,129,0.5); }
+.quiz-result.wrong { background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.4); }
+
+/* ── CHECKLIST ── */
+.checklist {
+  list-style: none;
+  margin: 16px 0;
+}
+
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.checklist li:last-child { border-bottom: none; }
+
+.check-box {
+  width: 20px; height: 20px;
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.checklist li.checked .check-box {
+  background: var(--success);
+  border-color: var(--success);
+  color: white;
+}
+
+.checklist li.checked .check-label {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* ── FLOW DIAGRAM ── */
+.flow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 20px 0;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.flow-box {
+  width: 90px;
+  background: var(--primary);
+  color: white;
+  border-radius: 10px;
+  padding: 10px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.flow-arrow {
+  font-size: 20px;
+  color: var(--text-muted);
+  margin: 0 6px;
+  flex-shrink: 0;
+  padding-bottom: 16px;
+}
+
+.flow-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  max-width: 80px;
+}
+
+/* ── TABLE ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 13px;
+}
+
+.data-table th {
+  background: var(--primary);
+  color: white;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.data-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: #f8fafc; }
+.data-table tr:nth-child(even) td { background: #fafbfc; }
+.data-table tr:nth-child(even):hover td { background: #f8fafc; }
+
+/* ── TOOLTIP ── */
+.tooltip-wrap { position: relative; display: inline-block; }
+
+.tooltip-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: help;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.tooltip-box {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  width: 220px;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.tooltip-wrap:hover .tooltip-box { opacity: 1; }
+
+/* ── NAV FOOTER ── */
+.nav-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0 0;
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-outline { background: transparent; color: var(--text-muted); border: 1.5px solid var(--border); }
+.btn-outline:hover { background: #f8fafc; color: var(--text); }
+.btn-ghost { background: transparent; color: var(--text-muted); }
+
+/* ── CODE ── */
+code {
+  font-family: 'JetBrains Mono', monospace;
+  background: #1e293b;
+  color: #7dd3fc;
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.code-block {
+  background: #1e293b;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 12px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #e2e8f0;
+  overflow-x: auto;
+  line-height: 1.7;
+}
+
+/* ── HIGHLIGHT BOX ── */
+.highlight-box {
+  background: linear-gradient(135deg, var(--accent-light), #fef9ee);
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+
+.highlight-box h3 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #92400e;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.highlight-box p { font-size: 14px; color: #78350f; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  #sidebar { transform: translateX(-100%); }
+  #main { margin-left: 0; }
+  .section { padding: 24px 20px 60px; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <span>🛰️</span>
+      <h1>ICP → MTP<br>Analysis Tool</h1>
+    </div>
+    <div class="sidebar-subtitle">Guide de configuration produit</div>
+  </div>
+
+  <div class="sidebar-progress">
+    <div class="progress-label">Progression</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="sidebar-nav">
+    <div class="nav-section-label">Introduction</div>
+    <button class="nav-item active" onclick="goTo(0)" id="nav0">
+      <span class="nav-num" id="num0">1</span>
+      <span class="nav-icon">🗺️</span>
+      <span>Vue d'ensemble</span>
+    </button>
+    <button class="nav-item" onclick="goTo(1)" id="nav1">
+      <span class="nav-num" id="num1">2</span>
+      <span class="nav-icon">📖</span>
+      <span>Notions clés</span>
+    </button>
+
+    <div class="nav-section-label">Configuration Produit</div>
+    <button class="nav-item" onclick="goTo(2)" id="nav2">
+      <span class="nav-num" id="num2">3</span>
+      <span class="nav-icon">🏭</span>
+      <span>Créer un produit</span>
+    </button>
+    <button class="nav-item" onclick="goTo(3)" id="nav3">
+      <span class="nav-num" id="num3">4</span>
+      <span class="nav-icon">🧩</span>
+      <span>Choisir les modules</span>
+    </button>
+    <button class="nav-item" onclick="goTo(4)" id="nav4">
+      <span class="nav-num" id="num4">5</span>
+      <span class="nav-icon">🔗</span>
+      <span>Parser & Extractor</span>
+    </button>
+
+    <div class="nav-section-label">Partie ICP</div>
+    <button class="nav-item" onclick="goTo(5)" id="nav5">
+      <span class="nav-num" id="num5">6</span>
+      <span class="nav-icon">📄</span>
+      <span>Qu'est-ce qu'un ICP ?</span>
+    </button>
+    <button class="nav-item" onclick="goTo(6)" id="nav6">
+      <span class="nav-num" id="num6">7</span>
+      <span class="nav-icon">📤</span>
+      <span>Charger le PDF ICP</span>
+    </button>
+    <button class="nav-item" onclick="goTo(7)" id="nav7">
+      <span class="nav-num" id="num7">8</span>
+      <span class="nav-icon">📋</span>
+      <span>Validation des logs</span>
+    </button>
+
+    <div class="nav-section-label">Finalisation</div>
+    <button class="nav-item" onclick="goTo(8)" id="nav8">
+      <span class="nav-num" id="num8">9</span>
+      <span class="nav-icon">⚠️</span>
+      <span>Erreurs fréquentes</span>
+    </button>
+    <button class="nav-item" onclick="goTo(9)" id="nav9">
+      <span class="nav-num" id="num9">10</span>
+      <span class="nav-icon">✅</span>
+      <span>Checklist finale</span>
+    </button>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main id="main">
+
+<!-- ─── PAGE 0 : VUE D'ENSEMBLE ─────────────────────────────── -->
+<div class="section active" id="sec0">
+  <div class="section-header">
+    <div class="section-tag">🗺️ Introduction</div>
+    <h2 class="section-title">Bienvenue dans le guide de configuration</h2>
+    <p class="section-lead">Ce guide vous accompagne, étape par étape, pour configurer un nouveau produit dans l'outil ICP → MTP. Pas besoin d'être expert — tout est expliqué simplement.</p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>⏱️ Durée estimée</h3>
+    <p>Lisez d'abord ce guide (20 minutes) puis ouvrez l'application. Votre première configuration prendra environ <strong>10 à 15 minutes</strong>.</p>
+  </div>
+
+  <!-- Workflow global -->
+  <div class="card">
+    <h3 style="font-size:15px;font-weight:800;margin-bottom:16px">🔄 Le parcours complet de l'outil</h3>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-box" style="background:#0057b8">📄 PDF ICP</div>
+        <div class="flow-label">Spécifications du produit</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-box" style="background:#0891b2">⚙️ Config</div>
+        <div class="flow-label">Créer le produit dans l'outil</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-box" style="background:#8b5cf6">📊 Extraction</div>
+        <div class="flow-label">L'outil lit les limites ICP</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-box" style="background:#10b981">📋 Validation</div>
+        <div class="flow-label">Logs comparés aux limites</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-box" style="background:#f59e0b">📑 MTP + IA</div>
+        <div class="flow-label">Analyse et rapport final</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rôles -->
+  <h3 style="font-size:16px;font-weight:800;margin:28px 0 14px">👥 Qui fait quoi ?</h3>
+  <div class="card-grid">
+    <div class="info-card">
+      <div class="info-card-icon">👤</div>
+      <h3>Vous (l'utilisateur)</h3>
+      <p>Vous configurez le produit, chargez les fichiers PDF et logs. L'outil fait le reste automatiquement.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🤖</div>
+      <h3>L'outil (automatique)</h3>
+      <p>Il lit les spécifications ICP, analyse les logs de tests et génère un rapport de conformité complet.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">📊</div>
+      <h3>L'IA intégrée</h3>
+      <p>Elle analyse les documents MTP et compare intelligemment les résultats avec les spécifications ICP.</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <h4>Bon à savoir</h4>
+      <p>Les produits <strong>DIW253</strong>, <strong>DCIW378</strong>, <strong>DIW377</strong>, <strong>DCIW377</strong> et <strong>DIW252</strong> sont déjà pré-configurés dans l'outil. Si votre produit figure dans cette liste, vous pouvez directement passer à l'étape d'extraction ICP !</p>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <div></div>
+    <button class="btn btn-primary" onclick="goTo(1)">Suivant : Notions clés →</button>
+  </div>
+</div>
+
+<!-- ─── PAGE 1 : NOTIONS CLÉS ────────────────────────────────── -->
+<div class="section" id="sec1">
+  <div class="section-header">
+    <div class="section-tag">📖 Notions essentielles</div>
+    <h2 class="section-title">Les mots-clés à comprendre</h2>
+    <p class="section-lead">Avant de configurer votre produit, voici les 6 notions fondamentales expliquées simplement. Cliquez sur chacune pour l'ouvrir.</p>
+  </div>
+
+  <div class="accordion-item open">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>📄 ICP — Inspection & Control Plan</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p style="margin-bottom:10px">L'ICP est un <strong>document officiel PDF</strong> qui liste toutes les limites de tests que doit respecter votre produit en usine.</p>
+      <p style="margin-bottom:10px">Pensez-y comme une <em>fiche technique de recette</em> : il indique pour chaque test quelles valeurs sont acceptables (minimum et maximum).</p>
+      <div class="callout info">
+        <div class="callout-icon">📌</div>
+        <div class="callout-body">
+          <p><strong>Exemple :</strong> L'ICP peut indiquer que la puissance Wi-Fi doit être comprise entre <code>14 dBm</code> et <code>20 dBm</code>. Si un appareil mesure <code>12 dBm</code>, il est hors limite → <strong>FAIL</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>📑 MTP — Manufacturing Test Protocol</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p style="margin-bottom:10px">Le MTP est le <strong>rapport des tests réellement effectués</strong> sur un appareil en production. Il contient les valeurs mesurées.</p>
+      <p style="margin-bottom:10px">Si l'ICP est la recette, le MTP est le <em>résultat du plat</em>. L'outil compare les deux pour voir si le produit est conforme.</p>
+      <div class="callout tip">
+        <div class="callout-icon">✅</div>
+        <div class="callout-body"><p>Le MTP est analysé par l'IA de l'outil, qui extrait automatiquement les valeurs mesurées depuis le PDF.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>🧩 Module — Type de test</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p style="margin-bottom:12px">Un module représente une <strong>catégorie de tests</strong>. Votre produit peut avoir plusieurs modules selon ses fonctionnalités.</p>
+      <div class="module-grid">
+        <div class="module-card fe">
+          <div class="mod-icon">📺</div>
+          <h4>Front-End (FE)</h4>
+          <p>Tests DVB-C, DVB-S, DVB-T. Présent seulement sur les produits avec tuner TV (décodeurs cable/satellite).</p>
+        </div>
+        <div class="module-card rf">
+          <div class="mod-icon">📶</div>
+          <h4>RF Wi-Fi</h4>
+          <p>Tests Wi-Fi 2.4 GHz et 5 GHz (puissance, EVM, erreur de fréquence).</p>
+        </div>
+        <div class="module-card bt">
+          <div class="mod-icon">🔵</div>
+          <h4>Bluetooth</h4>
+          <p>Tests Bluetooth (puissance TX/RX, dérive de fréquence).</p>
+        </div>
+        <div class="module-card bl">
+          <div class="mod-icon">⚡</div>
+          <h4>Board Level (ICT)</h4>
+          <p>Tests électroniques : tensions d'alimentation, démarrage, mémoire.</p>
+        </div>
+        <div class="module-card sys">
+          <div class="mod-icon">🖥️</div>
+          <h4>System Functional</h4>
+          <p>Tests fonctionnels : HDMI, Ethernet, USB, LED, boutons, température.</p>
+        </div>
+        <div class="module-card fw">
+          <div class="mod-icon">💾</div>
+          <h4>FW Upgrade / Final</h4>
+          <p>Tests de mise à jour firmware, vérification MD5, personnalisation SFIS.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>🔍 Parser — Le lecteur de logs</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p style="margin-bottom:10px">Un parser est un <strong>programme qui sait lire un type spécifique de fichier log</strong>. Il extrait automatiquement les résultats de tests.</p>
+      <p style="margin-bottom:10px">Chaque module a son parser dédié, déjà configuré dans l'outil. Vous n'avez pas à comprendre son fonctionnement interne.</p>
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <p><strong>Règle simple :</strong> L'outil vous suggère automatiquement le bon parser quand vous chargez un fichier log. Faites confiance à la suggestion affichée en vert !</p>
+        </div>
+      </div>
+      <table class="data-table" style="margin-top:12px">
+        <thead><tr><th>Type de fichier log</th><th>Parser à utiliser</th></tr></thead>
+        <tbody>
+          <tr><td><code>1+BoardLevel-*.log</code></td><td>Parser BoardLevel v1</td></tr>
+          <tr><td><code>1+RF-*.log</code></td><td>Parser RF v15</td></tr>
+          <tr><td><code>1+System-*.log</code></td><td>Parser System v1</td></tr>
+          <tr><td><code>1+FW_Upgrade-*.log</code></td><td>Parser FW/Final v1</td></tr>
+          <tr><td><code>1+Final-*.log</code></td><td>Parser FW/Final v1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>📦 Extractor — Le lecteur de PDF ICP</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p style="margin-bottom:10px">L'extractor lit le <strong>PDF ICP</strong> et en extrait les limites (min/max) pour chaque test. Il travaille au moment où vous chargez le PDF ICP dans l'étape 2.</p>
+      <div class="callout warning">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <p><strong>Important :</strong> Les modules <em>BoardLevel</em>, <em>System</em> et <em>FW Upgrade</em> n'ont <strong>pas besoin d'extractor</strong> — leurs limites viennent directement des logs (l'appareil écrit lui-même les limites dans le fichier). Laissez le champ sur "Aucun extractor".</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>✅ Règle de test — Le niveau de sévérité</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p style="margin-bottom:10px">La règle de test détermine <strong>comment l'outil réagit</strong> quand un paramètre est absent ou hors limites dans le log.</p>
+      <table class="data-table">
+        <thead><tr><th>Règle</th><th>Comportement</th><th>Conseillée pour</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Standard</strong></td><td>Avertissement si manquant</td><td>Usage normal ✅</td></tr>
+          <tr><td><strong>Strict</strong></td><td>Échec si manquant</td><td>Audit rigoureux</td></tr>
+          <tr><td><strong>All Tests RF</strong></td><td>Tous les tests RF vérifiés</td><td>Wi-Fi (tests complets)</td></tr>
+          <tr><td><strong>Mandatory Only</strong></td><td>Seulement tests obligatoires</td><td>Bluetooth (tests minimum)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Quiz -->
+  <div class="quiz-box" id="quiz1">
+    <div class="quiz-question">🎯 Question rapide : Un fichier <code>1+RF-SGAC30026043000018-PASS.log</code> doit être associé à quel module ?</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="answerQuiz('quiz1', this, false)">⚡ Board Level (ICT)</div>
+      <div class="quiz-option" onclick="answerQuiz('quiz1', this, true)">📶 RF Wi-Fi / 🔵 Bluetooth</div>
+      <div class="quiz-option" onclick="answerQuiz('quiz1', this, false)">🖥️ System Functional</div>
+    </div>
+    <div class="quiz-result correct" id="quiz1-result-ok">✅ Correct ! Le préfixe <code>1+RF-</code> indique un log de tests RF (Wi-Fi et Bluetooth).</div>
+    <div class="quiz-result wrong" id="quiz1-result-no">❌ Non. Le nom du fichier commence par <code>1+RF-</code> → c'est un log RF (Wi-Fi + Bluetooth).</div>
+  </div>
+
+  <div class="nav-footer">
+    <button class="btn btn-outline" onclick="goTo(0)">← Précédent</button>
+    <button class="btn btn-primary" onclick="goTo(2)">Suivant : Créer un produit →</button>
+  </div>
+</div>
+
+<!-- ─── PAGE 2 : CRÉER UN PRODUIT ────────────────────────────── -->
+<div class="section" id="sec2">
+  <div class="section-header">
+    <div class="section-tag">🏭 Étape 1 dans l'application</div>
+    <h2 class="section-title">Créer un nouveau produit</h2>
+    <p class="section-lead">Dans l'onglet "🏭 Produits" de la Configuration, remplissez les informations de base de votre appareil.</p>
+  </div>
+
+  <!-- Mockup -->
+  <div class="mockup">
+    <div class="mockup-bar">
+      <div class="mockup-dot red"></div>
+      <div class="mockup-dot yellow"></div>
+      <div class="mockup-dot green"></div>
+      <div class="mockup-url">localhost:8501 — ICP to MTP Analysis and Reporting Tool</div>
+    </div>
+    <div class="mockup-body">
+      <div class="mockup-tabs">
+        <div class="mockup-tab active">🏭 Produits</div>
+        <div class="mockup-tab">🧩 Modules</div>
+        <div class="mockup-tab">🔍 Parsers</div>
+        <div class="mockup-tab">📦 Extractors</div>
+        <div class="mockup-tab">✅ Règles</div>
+        <div class="mockup-tab">🔣 Regex</div>
+      </div>
+      <div class="mockup-form">
+        <div style="font-size:13px;font-weight:800;margin-bottom:14px;color:#0057b8">➕ Nouveau produit</div>
+        <div class="mockup-field">
+          <div class="mockup-label">Nom *</div>
+          <div class="mockup-input filled">DIW999 MyOperator</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="mockup-field">
+            <div class="mockup-label">Version</div>
+            <div class="mockup-input filled">v1.0</div>
+          </div>
+          <div class="mockup-field">
+            <div class="mockup-label">Opérateur / Client</div>
+            <div class="mockup-input filled">My Telecom</div>
+          </div>
+        </div>
+        <div class="mockup-field">
+          <div class="mockup-label">Modules à activer</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
+            <span class="mockup-badge badge-blue">☑ ⚡ Board Level</span>
+            <span class="mockup-badge badge-blue">☑ 🖥️ System</span>
+            <span class="mockup-badge badge-blue">☑ 📶 RF Wi-Fi</span>
+            <span class="mockup-badge badge-blue">☑ 🔵 Bluetooth</span>
+            <span class="mockup-badge badge-blue">☑ 💾 FW Upgrade</span>
+            <span style="background:#f1f5f9;color:#94a3b8;padding:3px 10px;border-radius:999px;font-size:11px">☐ 📺 FE</span>
+          </div>
+        </div>
+        <button class="mockup-btn">💾 Enregistrer le produit</button>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:15px;font-weight:800;margin:24px 0 14px">Champ par champ — que saisir ?</h3>
+
+  <div class="card">
+    <table class="data-table" style="margin:0">
+      <thead><tr><th>Champ</th><th>Que saisir ?</th><th>Exemple</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Nom *</strong> <span style="color:#ef4444;font-size:11px">obligatoire</span></td>
+          <td>Référence commerciale de l'appareil</td>
+          <td><code>DIW253 VF Portugal</code></td>
+        </tr>
+        <tr>
+          <td><strong>Version</strong></td>
+          <td>Version matérielle ou logicielle</td>
+          <td><code>v0.3</code> ou <code>HW_Rev_B</code></td>
+        </tr>
+        <tr>
+          <td><strong>Opérateur</strong></td>
+          <td>Nom du client ou opérateur télécom</td>
+          <td><code>Vodafone Portugal</code></td>
+        </tr>
+        <tr>
+          <td><strong>Notes</strong></td>
+          <td>Informations utiles pour votre équipe</td>
+          <td><code>Produit avec FE DVB-C</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout danger">
+    <div class="callout-icon">🚫</div>
+    <div class="callout-body">
+      <h4>Erreur fréquente #1</h4>
+      <p>Ne pas remplir le champ <strong>Nom</strong> — c'est le seul champ obligatoire. Sans nom, l'enregistrement est refusé.</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <h4>Astuce : Regardez les noms de vos fichiers logs !</h4>
+      <p>Le nom de votre produit se trouve souvent dans le nom des fichiers. Par exemple <code>DIW253_PT_TestFlow_RF_2026022401.xlsx</code> → le produit est <strong>DIW253</strong>.</p>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <button class="btn btn-outline" onclick="goTo(1)">← Précédent</button>
+    <button class="btn btn-primary" onclick="goTo(3)">Suivant : Choisir les modules →</button>
+  </div>
+</div>
+
+<!-- ─── PAGE 3 : CHOISIR LES MODULES ─────────────────────────── -->
+<div class="section" id="sec3">
+  <div class="section-header">
+    <div class="section-tag">🧩 Étape 1 — suite</div>
+    <h2 class="section-title">Quels modules activer pour mon produit ?</h2>
+    <p class="section-lead">Cette étape est critique : elle détermine quels types de tests votre produit doit passer. Voici comment faire le bon choix.</p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>🔑 La règle d'or</h3>
+    <p>Activez un module <strong>uniquement si vous avez des fichiers logs correspondants</strong>. Pas de log = pas de module.</p>
+  </div>
+
+  <h3 style="font-size:15px;font-weight:800;margin:24px 0 14px">🗺️ Arbre de décision — Quel module activer ?</h3>
+
+  <div class="card">
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">?</div>
+        <div class="step-content">
+          <h3>📺 Module FE (Front-End DVB)</h3>
+          <p>Activez-le seulement si votre appareil est un <strong>décodeur TV</strong> (câble, satellite, TNT) ET que vous avez un fichier log contenant <code>FE_ConnectCab</code>, <code>FE_ConnectSat</code> ou <code>FE_Connect TER</code>. Les routeurs Wi-Fi n'ont pas ce module.</p>
+        </div>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">?</div>
+        <div class="step-content">
+          <h3>📶 Module RF Wi-Fi</h3>
+          <p>Activez-le si votre produit a une connexion <strong>Wi-Fi</strong> ET que vous avez un fichier log <code>1+RF-*.log</code> contenant <code>TEST_VERIFY EVM MASK POWER SPECTRUM</code>.</p>
+        </div>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">?</div>
+        <div class="step-content">
+          <h3>🔵 Module Bluetooth</h3>
+          <p>Activez-le si votre produit a un <strong>chipset Bluetooth</strong>. Il partage généralement le même fichier log que le Wi-Fi (<code>1+RF-*.log</code>).</p>
+        </div>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">✓</div>
+        <div class="step-content">
+          <h3>⚡ Board Level + 🖥️ System + 💾 FW Upgrade</h3>
+          <p><strong>Activez toujours ces trois modules</strong> — tous les produits Sagemcom ont des logs BoardLevel, System et FW_Upgrade. Ce sont des tests universels.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table récapitulative -->
+  <h3 style="font-size:15px;font-weight:800;margin:24px 0 14px">📊 Référence rapide — Produits déjà configurés</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Produit</th>
+        <th>⚡ BL</th>
+        <th>🖥️ SYS</th>
+        <th>📺 FE</th>
+        <th>📶 Wi-Fi</th>
+        <th>🔵 BT</th>
+        <th>💾 FW</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>DIW253 VF Portugal</td><td>✅</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td>DCIW378 EST Vodafone</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td>DIW377 Altice US</td><td>✅</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td>DCIW377 DISH</td><td>✅</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td>DIW252 LOWI</td><td>✅</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warning">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-body">
+      <h4>Erreur fréquente #2</h4>
+      <p>Activer le module <strong>FE</strong> pour un produit qui n'est pas un décodeur TV. Si le log <code>1+BoardLevel</code> ne contient pas de ligne <code>FE_ConnectCab</code>, ne cochez pas le module FE.</p>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <button class="btn btn-outline" onclick="goTo(2)">← Précédent</button>
+    <button class="btn btn-primary" onclick="goTo(4)">Suivant : Parser & Extractor →</button>
+  </div>
+</div>
+
+<!-- ─── PAGE 4 : PARSER & EXTRACTOR ──────────────────────────── -->
+<div class="section" id="sec4">
+  <div class="section-header">
+    <div class="section-tag">🔗 Étape 1 — suite</div>
+    <h2 class="section-title">Configurer Parser et Extractor</h2>
+    <p class="section-lead">Pour chaque module activé, l'outil vous demande de choisir un parser et un extractor. Voici comment faire sans se tromper.</p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>✨ Bonne nouvelle</h3>
+    <p>L'outil <strong>pré-remplit automatiquement</strong> le bon parser et extractor pour chaque module connu. Dans 90% des cas, vous n'avez rien à changer !</p>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:16px">⚙️ Associations par défaut (déjà configurées)</h3>
+    <table class="data-table" style="margin:0">
+      <thead><tr><th>Module</th><th>Parser associé</th><th>Extractor associé</th><th>Règle</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>📺 <strong>FE</strong></td>
+          <td>Parser FE v2</td>
+          <td>Extractor FE v2</td>
+          <td>fe_standard</td>
+        </tr>
+        <tr>
+          <td>📶 <strong>RF Wi-Fi</strong></td>
+          <td>Parser RF v15</td>
+          <td>Extractor RF v3</td>
+          <td>rf_all_tests</td>
+        </tr>
+        <tr>
+          <td>🔵 <strong>Bluetooth</strong></td>
+          <td>Parser RF v15</td>
+          <td>Extractor RF v3</td>
+          <td>rf_mandatory_only</td>
+        </tr>
+        <tr style="background:#fefce8">
+          <td>⚡ <strong>Board Level</strong></td>
+          <td>Parser BoardLevel v1</td>
+          <td><em>Aucun requis</em></td>
+          <td>boardlevel_standard</td>
+        </tr>
+        <tr style="background:#fefce8">
+          <td>🖥️ <strong>System</strong></td>
+          <td>Parser System v1</td>
+          <td><em>Aucun requis</em></td>
+          <td>system_standard</td>
+        </tr>
+        <tr style="background:#fefce8">
+          <td>💾 <strong>FW Upgrade</strong></td>
+          <td>Parser FW/Final v1</td>
+          <td><em>Aucun requis</em></td>
+          <td>fwfinal_standard</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:#92400e;margin-top:10px;background:#fefce8;padding:8px;border-radius:6px">🟡 Fond jaune = modules qui n'ont pas besoin d'extractor ICP (leurs limites sont dans les logs eux-mêmes).</p>
+  </div>
+
+  <h3 style="font-size:15px;font-weight:800;margin:24px 0 14px">🤔 Quand dois-je changer quelque chose ?</h3>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>📌 Si l'outil affiche "Aucun parser compatible"</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p>Cela signifie que le module sélectionné n'a pas de parser associé dans l'outil. Retournez dans l'onglet <strong>🔍 Parsers</strong> et vérifiez que le parser existe et est bien marqué compatible avec ce module.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>📌 Si vous voyez "Aucun extractor compatible"</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p>Pour les modules <em>BoardLevel</em>, <em>System</em> et <em>FW Upgrade</em>, c'est <strong>normal et attendu</strong>. Ces modules n'ont pas besoin d'extraire des limites depuis un PDF ICP — elles sont dans les logs. L'outil affiche simplement un message informatif, pas une erreur.</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <h4>Comment l'outil suggère le bon parser ?</h4>
+      <p>Quand vous chargez un log, l'outil analyse automatiquement les premières lignes du fichier et affiche une suggestion avec un score de correspondance. Un score <strong style="color:green">≥ 70%</strong> en vert = bonne suggestion. Faites confiance à cette suggestion.</p>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <button class="btn btn-outline" onclick="goTo(3)">← Précédent</button>
+    <button class="btn btn-primary" onclick="goTo(5)">Suivant : Comprendre l'ICP →</button>
+  </div>
+</div>
+
+<!-- ─── PAGE 5 : QU'EST-CE QU'UN ICP ? ───────────────────────── -->
+<div class="section" id="sec5">
+  <div class="section-header">
+    <div class="section-tag">📄 Partie ICP — Essentiel</div>
+    <h2 class="section-title">Comprendre le document ICP</h2>
+    <p class="section-lead">Le document ICP est le cœur de la configuration. Il définit les limites de conformité de votre produit. Voici comment le reconnaître et l'utiliser.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:15px;font-weight:800;margin-bottom:14px">📁 Comment reconnaître votre fichier ICP ?</h3>
+    <p style="margin-bottom:12px">Le fichier ICP est toujours un <strong>PDF</strong> dont le nom contient généralement "ICP" ou "PRODUCT" :</p>
+    <div class="code-block">
+ICP_PRODUCT_VODAFONE_DIW253_v0.3.pdf   ← votre ICP
+ICP_PRODUCT_DISH_DCIW377_v0.4.pdf      ← ICP DISH
+ICP_PRODUCT_LOWI_DIW252_v0.2.pdf       ← ICP LOWI
+    </div>
+    <div class="callout warning">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body"><p>Ne confondez pas le PDF ICP avec le PDF MTP ! Vérifiez le nom : <strong>ICP</strong> = spécifications, <strong>MTP</strong> = résultats mesurés.</p></div>
+    </div>
+  </div>
+
+  <h3 style="font-size:15px;font-weight:800;margin:24px 0 14px">📊 Que contient le PDF ICP ?</h3>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <div class="info-card-icon">⚡</div>
+      <h3>Tensions ICT (Part 6)</h3>
+      <p>Tableau des tensions d'alimentation (ex. 12V, 3.3V, 1.8V) avec limites min/max pour chaque point de test (PT15xxx).</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">📺</div>
+      <h3>Tests FE DVB (Part 8.1)</h3>
+      <p>Pour décodeurs uniquement. Liste les fréquences et modulations DVB-C/S/T à tester avec limites BER, SNR, RSSI…</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🖥️</div>
+      <h3>Tests fonctionnels (Part 8)</h3>
+      <p>HDMI, Ethernet ping, USB, LED, IR, boutons — avec valeurs attendues (souvent PASS/FAIL = 1 ou 0).</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">📶</div>
+      <h3>Tests Wi-Fi / BT (Part 8.9+)</h3>
+      <p>Limites de puissance TX (dBm), EVM (dB), tolérance fréquence (ppm), PER (%) pour chaque fréquence et modulation.</p>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-icon">📌</div>
+    <div class="callout-body">
+      <h4>Bon à savoir : Le JSON rf_limits</h4>
+      <p>Pour certains produits (DISH, LOWI), un fichier <code>*_rf_limits.json</code> accompagne le PDF ICP. Ce fichier contient les limites RF en format structuré — l'outil l'utilise directement sans extraction PDF. Si ce fichier existe, utilisez-le en priorité pour les modules RF Wi-Fi et Bluetooth.</p>
+    </div>
+  </div>
+
+  <!-- Exemple tableau ICP -->
+  <div class="mockup" style="margin-top:20px">
+    <div class="mockup-bar">
+      <div class="mockup-dot red"></div>
+      <div class="mockup-dot yellow"></div>
+      <div class="mockup-dot green"></div>
+      <div class="mockup-url">ICP_PRODUCT_VODAFONE_DIW253_v0.3.pdf — Page 7 : Tensions ICT</div>
+    </div>
+    <div class="mockup-body">
+      <table class="data-table" style="background:white;font-size:12px">
+        <thead style="font-size:11px">
+          <tr><th>Signal</th><th>Test Point</th><th>Fonction</th><th>Nominal</th><th>Min</th><th>Max</th><th>Unité</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>P12V</td><td>PT1500</td><td>Input Power</td><td>12V</td><td>11.5</td><td>12.5</td><td>V</td></tr>
+          <tr><td>VTIL</td><td>PT1600</td><td>SoC</td><td>3.3V</td><td>3.13</td><td>3.46</td><td>V</td></tr>
+          <tr><td>P5VP</td><td>PT16200</td><td>SoC</td><td>5V</td><td>4.75</td><td>5.25</td><td>V</td></tr>
+          <tr><td>VDD_CPU</td><td>PT15700</td><td>SoC</td><td>—</td><td>0.68</td><td>1.0</td><td>V</td></tr>
+          <tr><td>P3V3C_WIFI</td><td>PT15400</td><td>WiFi</td><td>3.3V</td><td>3.13</td><td>3.46</td><td>V</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:11px;color:#64748b;margin-top:8px;text-align:center">↑ L'outil extrait automatiquement ces limites lors de l'étape "Extraction ICP"</p>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <button class="btn btn-outline" onclick="goTo(4)">← Précédent</button>
+    <button class="btn btn-primary" onclick="goTo(6)">Suivant : Charger le PDF ICP →</button>
+  </div>
+</div>
+
+<!-- ─── PAGE 6 : CHARGER LE PDF ICP ──────────────────────────── -->
+<div class="section" id="sec6">
+  <div class="section-header">
+    <div class="section-tag">📤 Étape 2 dans l'application</div>
+    <h2 class="section-title">Charger et extraire le PDF ICP</h2>
+    <p class="section-lead">Dans l'application, passez à l'<strong>Étape 2 — Extraction ICP</strong>. Voici exactement quoi faire et à quoi s'attendre.</p>
+  </div>
+
+  <div class="step-list">
+    <div class="step-item" style="cursor:default">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>Vérifiez que le bon produit est sélectionné</h3>
+        <p>En haut à gauche de l'interface (barre latérale), vérifiez que votre produit est affiché comme "Produit actif". Sinon, sélectionnez-le dans la liste.</p>
+      </div>
+    </div>
+    <div class="step-item" style="cursor:default">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Cliquez sur "📁 Charger le PDF ICP"</h3>
+        <p>Une fenêtre s'ouvre — naviguez jusqu'à votre fichier <code>ICP_PRODUCT_*.pdf</code> et sélectionnez-le. L'outil lit immédiatement les premières pages et affiche une suggestion.</p>
+      </div>
+    </div>
+    <div class="step-item" style="cursor:default">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>Lisez la suggestion automatique</h3>
+        <p>Un encadré vert apparaît avec le meilleur extractor détecté. Exemple : <em>"L'extractor Extractor FE ICP v2 correspond à 6/8 marqueurs"</em>. C'est une bonne correspondance — continuez.</p>
+      </div>
+    </div>
+    <div class="step-item" style="cursor:default">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h3>Cliquez sur "🚀 Lancer l'extraction ICP"</h3>
+        <p>L'outil analyse le PDF (10-30 secondes) et extrait les limites pour chaque module. Une barre de progression s'affiche.</p>
+      </div>
+    </div>
+    <div class="step-item" style="cursor:default">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h3>Vérifiez les résultats</h3>
+        <p>L'outil affiche un tableau récapitulatif des tests extraits. Vérifiez que le nombre de tests correspond à ce que vous attendez (consultez le PDF ICP si besoin).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout danger">
+    <div class="callout-icon">🚫</div>
+    <div class="callout-body">
+      <h4>Problème : "0 tests FE extraits" alors que j'ai des tests DVB</h4>
+      <p>Vérifiez que le module <strong>FE</strong> est bien activé dans la configuration du produit <em>et</em> que l'extractor <strong>Extractor FE ICP v2</strong> est sélectionné pour ce module. Si le module FE n'est pas coché, l'extraction ne se fait pas.</p>
+    </div>
+  </div>
+
+  <div class="callout danger">
+    <div class="callout-icon">🚫</div>
+    <div class="callout-body">
+      <h4>Problème : Erreur "PermissionError" sous Windows</h4>
+      <p>Ce problème est corrigé dans la version actuelle. Si vous le rencontrez encore, fermez l'application et relancez-la. C'est un problème de fichier temporaire verrouillé.</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <h4>Conseil : Pour les produits RF Wi-Fi / Bluetooth avec JSON</h4>
+      <p>Si votre produit dispose d'un fichier <code>*_rf_limits.json</code>, chargez-le à l'étape 3 (Validation Logs) plutôt que d'extraire les limites RF depuis le PDF. Le JSON est plus précis et plus complet.</p>
+    </div>
+  </div>
+
+  <div class="quiz-box" id="quiz2">
+    <div class="quiz-question">🎯 L'outil affiche "6/8 marqueurs détectés" pour un extractor. Que faut-il faire ?</div>
+    <div class="quiz-options">
+      <div class="quiz-option" onclick="answerQuiz('quiz2', this, false)">❌ Changer d'extractor, ce n'est pas assez</div>
+      <div class="quiz-option" onclick="answerQuiz('quiz2', this, true)">✅ Continuer, c'est une très bonne correspondance</div>
+      <div class="quiz-option" onclick="answerQuiz('quiz2', this, false)">🔄 Relancer l'extraction plusieurs fois</div>
+    </div>
+    <div class="quiz-result correct" id="quiz2-result-ok">✅ Correct ! 6/8 marqueurs = 75% de correspondance → très bon score. Un score ≥ 70% est considéré comme fiable.</div>
+    <div class="quiz-result wrong" id="quiz2-result-no">❌ Non. 6/8 marqueurs correspond à 75% — c'est un bon score. Continuez avec cet extractor.</div>
+  </div>
+
+  <div class="nav-footer">
+    <button class="btn btn-outline" onclick="goTo(5)">← Précédent</button>
+    <button class="btn btn-primary" onclick="goTo(7)">Suivant : Validation des logs →</button>
+  </div>
+</div>
+
+<!-- ─── PAGE 7 : VALIDATION DES LOGS ──────────────────────────── -->
+<div class="section" id="sec7">
+  <div class="section-header">
+    <div class="section-tag">📋 Étape 3 dans l'application</div>
+    <h2 class="section-title">Charger et valider les logs d'équipement</h2>
+    <p class="section-lead">C'est l'étape où l'outil compare les mesures réelles (dans les logs) aux spécifications de l'ICP. Vous pouvez charger plusieurs logs simultanément.</p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>📁 Quels fichiers charger ?</h3>
+    <p>Chargez <strong>tous les fichiers log</strong> de votre session de test. Pour un produit complet, vous en avez généralement <strong>5</strong> : BoardLevel, RF, System, FW_Upgrade, Final.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:14px">🎯 Comment ça marche — Assignation automatique</h3>
+    <p style="margin-bottom:12px">Quand vous chargez plusieurs logs, l'outil analyse chacun et suggère automatiquement :</p>
+    <div class="mockup-body" style="border-radius:10px;border:1px solid #e2e8f0;padding:16px">
+      <div style="display:grid;grid-template-columns:2fr 1.5fr 2fr 1fr;gap:8px;font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px">
+        <span>Fichier log</span><span>Module</span><span>Parser</span><span>Match</span>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1.5fr 2fr 1fr;gap:8px;font-size:12px;align-items:center;border-top:1px solid #e2e8f0;padding:8px 0">
+        <span>📄 1+BoardLevel-...PASS.log</span>
+        <span><span class="mockup-badge badge-yellow">⚡ Board Level</span></span>
+        <span>Parser BoardLevel v1</span>
+        <span style="color:green;font-weight:700">✓ 67%</span>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1.5fr 2fr 1fr;gap:8px;font-size:12px;align-items:center;border-top:1px solid #e2e8f0;padding:8px 0">
+        <span>📄 1+RF-...PASS.log</span>
+        <span><span class="mockup-badge badge-blue">📶 RF Wi-Fi</span></span>
+        <span>Parser RF v15</span>
+        <span style="color:green;font-weight:700">✓ 83%</span>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1.5fr 2fr 1fr;gap:8px;font-size:12px;align-items:center;border-top:1px solid #e2e8f0;padding:8px 0">
+        <span>📄 1+System-...PASS.log</span>
+        <span><span class="mockup-badge badge-green">🖥️ System</span></span>
+        <span>Parser System v1</span>
+        <span style="color:green;font-weight:700">✓ 57%</span>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1.5fr 2fr 1fr;gap:8px;font-size:12px;align-items:center;border-top:1px solid #e2e8f0;padding:8px 0">
+        <span>📄 1+FW_Upgrade-...PASS.log</span>
+        <span><span class="mockup-badge" style="background:#e2e8f0;color:#475569">💾 FW Upgrade</span></span>
+        <span>Parser FW/Final v1</span>
+        <span style="color:green;font-weight:700">✓ 43%</span>
+      </div>
+    </div>
+    <p style="font-size:12px;color:#64748b;margin-top:10px">Si une assignation vous semble incorrecte, modifiez-la manuellement avec les listes déroulantes avant de lancer la validation.</p>
+  </div>
+
+  <h3 style="font-size:15px;font-weight:800;margin:24px 0 14px">📊 Interpréter les résultats</h3>
+  <table class="data-table">
+    <thead><tr><th>Indicateur</th><th>Signification</th><th>Action requise ?</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span style="color:green;font-weight:700">✅ PASS</span></td>
+        <td>La valeur mesurée est dans les limites ICP</td>
+        <td>Non — tout va bien</td>
+      </tr>
+      <tr>
+        <td><span style="color:red;font-weight:700">❌ FAIL</span></td>
+        <td>La valeur est hors des limites définies dans l'ICP</td>
+        <td>Oui — à investiguer</td>
+      </tr>
+      <tr>
+        <td><span style="color:#d97706;font-weight:700">⚠️ Manquant</span></td>
+        <td>Le paramètre attendu n'a pas été trouvé dans le log</td>
+        <td>Vérifier le log ou la config</td>
+      </tr>
+      <tr>
+        <td><span style="color:#64748b;font-weight:700">— N/A</span></td>
+        <td>Test non applicable pour ce produit</td>
+        <td>Non</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout warning">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-body">
+      <h4>Attention : Log FW_Upgrade avec préfixe "2+"</h4>
+      <p>Pour certains produits (ex. DIW252 LOWI), le log FW_Upgrade commence par <code>2+FW_Upgrade-</code> au lieu de <code>1+FW_Upgrade-</code>. C'est normal — assignez-lui quand même le module <strong>FW Upgrade</strong> et le parser <strong>FW/Final v1</strong>.</p>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <button class="btn btn-outline" onclick="goTo(6)">← Précédent</button>
+    <button class="btn btn-primary" onclick="goTo(8)">Suivant : Erreurs fréquentes →</button>
+  </div>
+</div>
+
+<!-- ─── PAGE 8 : ERREURS FRÉQUENTES ──────────────────────────── -->
+<div class="section" id="sec8">
+  <div class="section-header">
+    <div class="section-tag">⚠️ Problèmes & Solutions</div>
+    <h2 class="section-title">Erreurs fréquentes et comment les résoudre</h2>
+    <p class="section-lead">Voici les problèmes les plus courants rencontrés lors d'une première configuration, avec les solutions exactes.</p>
+  </div>
+
+  <div class="accordion-item open">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>🔴 "Aucun parser compatible" pour un module</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p style="margin-bottom:8px"><strong>Cause :</strong> Le module est coché mais aucun parser dans le catalogue n'est configuré comme compatible avec lui.</p>
+      <p style="margin-bottom:8px"><strong>Solution :</strong></p>
+      <ol style="padding-left:20px;font-size:13px;line-height:2">
+        <li>Allez dans l'onglet <strong>🔍 Parsers</strong></li>
+        <li>Cliquez sur ✏️ pour éditer le parser concerné</li>
+        <li>Dans le champ "Modules compatibles", ajoutez l'ID de votre module</li>
+        <li>Cliquez sur 💾 Enregistrer</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>🔴 Le bouton "Enregistrer" ne semble pas fonctionner</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p style="margin-bottom:8px"><strong>Cause probable :</strong> Un champ obligatoire est vide (Nom du produit) ou une valeur invalide a été saisie.</p>
+      <p style="margin-bottom:8px"><strong>Solution :</strong></p>
+      <ul style="padding-left:20px;font-size:13px;line-height:2">
+        <li>Vérifiez que le champ <strong>Nom *</strong> est rempli</li>
+        <li>Regardez s'il y a un message d'erreur rouge sous le formulaire</li>
+        <li>Si aucune erreur visible, essayez de rafraîchir la page (F5) et recommencez</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>🔴 Extraction ICP : "0 tests extraits"</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p style="margin-bottom:8px"><strong>Causes possibles :</strong></p>
+      <ul style="padding-left:20px;font-size:13px;line-height:2;margin-bottom:10px">
+        <li>Le PDF est scanné (image uniquement, pas de texte) — l'outil ne peut pas lire les images</li>
+        <li>Le module correspondant n'est pas activé dans la configuration du produit</li>
+        <li>Le mauvais extractor est sélectionné pour ce module</li>
+        <li>Le PDF n'est pas un ICP mais un autre type de document</li>
+      </ul>
+      <p><strong>Solution :</strong> Vérifiez que votre PDF s'ouvre bien dans Adobe Reader et que le texte est sélectionnable (pas une image). Vérifiez la configuration du produit.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>🔴 Validation logs : "Paramètre absent du log"</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p style="margin-bottom:8px"><strong>Cause :</strong> L'ICP définit une limite pour un paramètre (ex. "Rate Offset") mais ce paramètre n'a pas été mesuré dans le log.</p>
+      <p style="margin-bottom:8px"><strong>Ce n'est pas forcément une erreur grave !</strong> Pour certains produits (ex. DVB-S), quelques paramètres peuvent être omis. Regardez la règle de test :</p>
+      <ul style="padding-left:20px;font-size:13px;line-height:2">
+        <li>Règle <strong>Standard</strong> → avertissement (⚠️) — le rapport continue</li>
+        <li>Règle <strong>Strict</strong> → échec (❌) — le paramètre manquant bloque</li>
+      </ul>
+      <p>Si vous voyez beaucoup de paramètres manquants, vérifiez que vous avez chargé le bon fichier log pour ce module.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>🔴 Multiselect : valeur par défaut invalide</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p style="margin-bottom:8px"><strong>Cause :</strong> Un parser ou extractor avait "Final" dans ses modules compatibles, mais "Final" n'est pas un module valide (c'est un type de log, pas un module).</p>
+      <p><strong>Solution :</strong> Ce problème est corrigé dans la version actuelle. Si vous le rencontrez, allez dans l'onglet <strong>🔍 Parsers</strong>, éditez le parser concerné, et retirez "Final" de la liste "Modules compatibles".</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <h3>🔴 L'IA répond avec une erreur de connexion</h3>
+      <span class="accordion-chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p style="margin-bottom:8px"><strong>Cause :</strong> L'API interne est inaccessible (réseau, serveur arrêté, token expiré).</p>
+      <p><strong>Solution :</strong> L'outil bascule automatiquement sur un mode de comparaison local (sans IA). Vous obtiendrez un rapport basique mais fonctionnel. Relancez l'analyse IA une fois la connexion rétablie.</p>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <button class="btn btn-outline" onclick="goTo(7)">← Précédent</button>
+    <button class="btn btn-primary" onclick="goTo(9)">Suivant : Checklist finale →</button>
+  </div>
+</div>
+
+<!-- ─── PAGE 9 : CHECKLIST FINALE ────────────────────────────── -->
+<div class="section" id="sec9">
+  <div class="section-header">
+    <div class="section-tag">✅ Récapitulatif</div>
+    <h2 class="section-title">Checklist de configuration — Avant de lancer</h2>
+    <p class="section-lead">Cochez chaque élément au fur et à mesure de votre configuration. Cliquez sur une ligne pour la marquer comme faite.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:14px;font-weight:800;margin-bottom:14px;color:#0057b8">🏭 Configuration du Produit (Étape 1)</h3>
+    <ul class="checklist">
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">J'ai rempli le <strong>Nom</strong> du produit (champ obligatoire)</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">J'ai indiqué la <strong>Version</strong> et l'<strong>Opérateur</strong></span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">J'ai coché les modules correspondant à mes fichiers logs disponibles</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">J'ai <strong>toujours</strong> coché ⚡ BoardLevel + 🖥️ System + 💾 FW Upgrade</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">J'ai coché 📺 FE <strong>seulement si</strong> mon produit est un décodeur TV</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">Chaque module activé a un <strong>parser</strong> associé (affiché en bleu)</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">Le bouton 💾 Enregistrer a bien confirmé par un message ✅</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:14px;font-weight:800;margin-bottom:14px;color:#0891b2">📄 Extraction ICP (Étape 2)</h3>
+    <ul class="checklist">
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">J'ai chargé le bon fichier PDF (nom contient "ICP", pas "MTP")</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">La suggestion automatique d'extractor affiche un score ≥ 40%</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">L'extraction s'est terminée sans erreur rouge</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">Le nombre de tests extraits est cohérent (ex. ≥ 5 pour FE, ≥ 10 pour RF)</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:14px;font-weight:800;margin-bottom:14px;color:#10b981">📋 Validation Logs (Étape 3)</h3>
+    <ul class="checklist">
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">J'ai chargé <strong>tous</strong> mes fichiers logs en une seule fois</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">L'assignation automatique module/parser est correcte pour chaque log</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">La validation batch s'est terminée sans erreur bloquante</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">J'ai regardé les résultats par fichier et compris les ❌ FAIL</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:14px;font-weight:800;margin-bottom:14px;color:#8b5cf6">📊 Rapport & Analyse MTP (Étapes 4-6)</h3>
+    <ul class="checklist">
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">Le rapport ICP (Étape 4) est généré et exporté en JSON/Excel</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">J'ai chargé le(s) PDF MTP dans l'Étape 5</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">L'IA a analysé les PDF MTP avec succès</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">La comparaison ICP vs MTP (Étape 6) a produit un statut PASS / FAIL / PARTIAL</span>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <span class="check-label">Le rapport final (Étape 7) est téléchargé en JSON et/ou Excel</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="callout tip" style="margin-top:20px">
+    <div class="callout-icon">🎉</div>
+    <div class="callout-body">
+      <h4>Félicitations !</h4>
+      <p>Si toutes les cases sont cochées, votre configuration est complète et votre rapport de conformité est prêt. Bonne validation !</p>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:32px;padding:32px;background:linear-gradient(135deg,#0057b8,#0891b2);border-radius:16px;color:white">
+    <div style="font-size:40px;margin-bottom:12px">🛰️</div>
+    <h3 style="font-size:20px;font-weight:800;margin-bottom:8px">Guide terminé !</h3>
+    <p style="opacity:0.85;font-size:14px;max-width:400px;margin:0 auto 20px">Vous avez parcouru toutes les notions essentielles. Lancez l'application et commencez votre première configuration.</p>
+    <button class="btn" style="background:rgba(255,255,255,0.2);color:white;border:2px solid rgba(255,255,255,0.4)" onclick="goTo(0)">↺ Recommencer le guide</button>
+  </div>
+
+  <div class="nav-footer">
+    <button class="btn btn-outline" onclick="goTo(8)">← Précédent</button>
+    <div></div>
+  </div>
+</div>
+
+</main>
+
+<script>
+const TOTAL = 10;
+let visited = new Set([0]);
+let current = 0;
+
+function goTo(idx) {
+  // Hide current
+  document.getElementById(`sec${current}`).classList.remove('active');
+  document.getElementById(`nav${current}`).classList.remove('active');
+
+  // Mark visited
+  visited.add(current);
+  if (current !== idx) {
+    document.getElementById(`nav${current}`).classList.add('done');
+    const num = document.getElementById(`num${current}`);
+    num.textContent = '✓';
+  }
+
+  // Show new
+  current = idx;
+  document.getElementById(`sec${current}`).classList.add('active');
+  document.getElementById(`nav${current}`).classList.remove('done');
+  document.getElementById(`nav${current}`).classList.add('active');
+  document.getElementById(`num${current}`).textContent = (idx + 1);
+
+  // Update progress
+  const pct = Math.round((visited.size / TOTAL) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+
+  // Scroll to top
+  document.getElementById('main').scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleAccordion(header) {
+  const item = header.parentElement;
+  const isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+function answerQuiz(quizId, btn, isCorrect) {
+  const quiz = document.getElementById(quizId);
+  // Disable all options
+  quiz.querySelectorAll('.quiz-option').forEach(opt => {
+    opt.style.pointerEvents = 'none';
+    opt.style.opacity = '0.6';
+  });
+  btn.style.opacity = '1';
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+
+  // Show result
+  document.getElementById(quizId + '-result-ok').style.display = isCorrect ? 'block' : 'none';
+  document.getElementById(quizId + '-result-no').style.display = isCorrect ? 'none' : 'block';
+}
+
+function toggleCheck(li) {
+  li.classList.toggle('checked');
+  const checkBox = li.querySelector('.check-box');
+  checkBox.textContent = li.classList.contains('checked') ? '✓' : '';
+}
+</script>
+</body>
+</html>

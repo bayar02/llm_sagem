@@ -1,0 +1,930 @@
+{
+  "version": "2.0",
+  "products": {
+    "prod_diw252_lowi_20260409151951": {
+      "id": "prod_diw252_lowi_20260409151951",
+      "name": "DIW252 LOWI",
+      "version": "v0.2",
+      "operator": "LOWI (Spain)",
+      "modules": [
+        "BoardLevel",
+        "System",
+        "RF_WiFi",
+        "RF_BT",
+        "FW_Upgrade"
+      ],
+      "parser_map": {
+        "BoardLevel": "parse_boardlevel_v1",
+        "System": "parse_system_v1",
+        "RF_WiFi": "parse_rf_v15",
+        "RF_BT": "parse_rf_v15",
+        "FW_Upgrade": "parse_fwfinal_v1"
+      },
+      "extractor_map": {
+        "RF_WiFi": "extract_rf_v3",
+        "RF_BT": "extract_rf_v3"
+      },
+      "test_rule_map": {
+        "RF_WiFi": "rf_all_tests",
+        "RF_BT": "rf_mandatory_only"
+      },
+      "notes": "Wi-Fi 2.4GHz + 5GHz. Pas de FE DVB. JSON rf_limits fourni avec ICP. FW log en 2+FW_Upgrade.",
+      "created_at": "2026-04-09T15:19:51.497223",
+      "updated_at": "2026-04-09T15:19:51.497230"
+    },
+    "prod_diw253_vf_portugal_20260409151951": {
+      "id": "prod_diw253_vf_portugal_20260409151951",
+      "name": "DIW253 VF Portugal",
+      "version": "v0.3",
+      "operator": "Vodafone Portugal",
+      "modules": [
+        "BoardLevel",
+        "System",
+        "RF_WiFi",
+        "RF_BT",
+        "FW_Upgrade"
+      ],
+      "parser_map": {
+        "BoardLevel": "parse_boardlevel_v1",
+        "System": "parse_system_v1",
+        "RF_WiFi": "parse_rf_v15",
+        "RF_BT": "parse_rf_v15",
+        "FW_Upgrade": "parse_fwfinal_v1"
+      },
+      "extractor_map": {
+        "RF_WiFi": "extract_rf_v3",
+        "RF_BT": "extract_rf_v3"
+      },
+      "test_rule_map": {
+        "RF_WiFi": "rf_all_tests",
+        "RF_BT": "rf_mandatory_only"
+      },
+      "notes": "Wi-Fi 2.4+5GHz + BT. Pas de JSON rf_limits (ICP PDF uniquement).",
+      "created_at": "2026-04-09T15:19:51.498500",
+      "updated_at": "2026-04-09T15:19:51.498506"
+    },
+    "prod_dciw378_est_vodafone_20260409151951": {
+      "id": "prod_dciw378_est_vodafone_20260409151951",
+      "name": "DCIW378 EST Vodafone",
+      "version": "v1.1",
+      "operator": "Vodafone Albania/EST",
+      "modules": [
+        "BoardLevel",
+        "System",
+        "FE",
+        "RF_WiFi",
+        "RF_BT",
+        "FW_Upgrade"
+      ],
+      "parser_map": {
+        "BoardLevel": "parse_boardlevel_v1",
+        "System": "parse_system_v1",
+        "FE": "parse_fe_v2",
+        "RF_WiFi": "parse_rf_v15",
+        "RF_BT": "parse_rf_v15",
+        "FW_Upgrade": "parse_fwfinal_v1"
+      },
+      "extractor_map": {
+        "FE": "extract_fe_v2",
+        "RF_WiFi": "extract_rf_v3",
+        "RF_BT": "extract_rf_v3"
+      },
+      "test_rule_map": {
+        "FE": "fe_standard",
+        "RF_WiFi": "rf_all_tests",
+        "RF_BT": "rf_mandatory_only"
+      },
+      "notes": "Produit avec FE DVB-C + Wi-Fi + BT. ICP PDF + logs complets.",
+      "created_at": "2026-04-09T15:19:51.499634",
+      "updated_at": "2026-04-09T15:19:51.499638"
+    },
+    "prod_diw377_altice_us_20260409151951": {
+      "id": "prod_diw377_altice_us_20260409151951",
+      "name": "DIW377 Altice US",
+      "version": "v1.4",
+      "operator": "Altice USA",
+      "modules": [
+        "BoardLevel",
+        "System",
+        "RF_WiFi",
+        "RF_BT",
+        "FW_Upgrade"
+      ],
+      "parser_map": {
+        "BoardLevel": "parse_boardlevel_v1",
+        "System": "parse_system_v1",
+        "RF_WiFi": "parse_rf_v15",
+        "RF_BT": "parse_rf_v15",
+        "FW_Upgrade": "parse_fwfinal_v1"
+      },
+      "extractor_map": {
+        "RF_WiFi": "extract_rf_v3",
+        "RF_BT": "extract_rf_v3"
+      },
+      "test_rule_map": {
+        "RF_WiFi": "rf_all_tests",
+        "RF_BT": "rf_mandatory_only"
+      },
+      "notes": "Log format identique M253 VF. Log RF ALTICE (date ISO différente: 2026-02-10).",
+      "created_at": "2026-04-09T15:19:51.500772",
+      "updated_at": "2026-04-09T15:19:51.500775"
+    },
+    "prod_dciw377_dish_20260409151951": {
+      "id": "prod_dciw377_dish_20260409151951",
+      "name": "DCIW377 DISH",
+      "version": "v0.4",
+      "operator": "DISH Network USA",
+      "modules": [
+        "BoardLevel",
+        "System",
+        "RF_WiFi",
+        "RF_BT",
+        "FW_Upgrade"
+      ],
+      "parser_map": {
+        "BoardLevel": "parse_boardlevel_v1",
+        "System": "parse_system_v1",
+        "RF_WiFi": "parse_rf_v15",
+        "RF_BT": "parse_rf_v15",
+        "FW_Upgrade": "parse_fwfinal_v1"
+      },
+      "extractor_map": {
+        "RF_WiFi": "extract_rf_v3",
+        "RF_BT": "extract_rf_v3"
+      },
+      "test_rule_map": {
+        "RF_WiFi": "rf_all_tests",
+        "RF_BT": "rf_mandatory_only"
+      },
+      "notes": "JSON rf_limits fourni. FE DVB-S via ICP PDF. Fichier de continuité GND dans ICP.",
+      "created_at": "2026-04-09T15:19:51.501946",
+      "updated_at": "2026-04-09T15:19:51.501951"
+    }
+  },
+  "modules": {
+    "FE": {
+      "id": "FE",
+      "name": "Front-End (FE)",
+      "icon": "📺",
+      "description": "Validation DVB-C, DVB-S/S2, DVB-T/T2",
+      "color": "#0057b8",
+      "default_parser": "parse_fe_v2",
+      "default_extractor": "extract_fe_v2",
+      "default_test_rule": "fe_standard",
+      "builtin": true
+    },
+    "RF_WiFi": {
+      "id": "RF_WiFi",
+      "name": "RF Wi-Fi",
+      "icon": "📶",
+      "description": "Validation Wi-Fi 2.4 GHz / 5 GHz (EVM, Power, PER)",
+      "color": "#0891b2",
+      "default_parser": "parse_rf_v15",
+      "default_extractor": "extract_rf_v3",
+      "default_test_rule": "rf_all_tests",
+      "builtin": true
+    },
+    "RF_BT": {
+      "id": "RF_BT",
+      "name": "Bluetooth",
+      "icon": "🔵",
+      "description": "Validation Bluetooth BR/EDR/BLE (Power, BER, Drift, Deviation)",
+      "color": "#7c3aed",
+      "default_parser": "parse_rf_v15",
+      "default_extractor": "extract_rf_v3",
+      "default_test_rule": "rf_mandatory_only",
+      "builtin": true
+    },
+    "BoardLevel": {
+      "id": "BoardLevel",
+      "name": "Board Level (ICT)",
+      "icon": "⚡",
+      "description": "Tests ICT : mesures de tension, boot, EMMC, Ethernet, HDMI, IR — logs 1+BoardLevel-*.log",
+      "color": "#7c3aed",
+      "default_parser": "parse_boardlevel_v1",
+      "default_extractor": "extract_none",
+      "default_test_rule": "boardlevel_standard",
+      "builtin": false
+    },
+    "System": {
+      "id": "System",
+      "name": "System Functional",
+      "icon": "🖥️",
+      "description": "Tests fonctionnels : HDMI EDID/Video, Ethernet, USB, LED, Boutons, Wi-Fi/BT radiated — logs 1+System-*.log",
+      "color": "#0891b2",
+      "default_parser": "parse_system_v1",
+      "default_extractor": "extract_none",
+      "default_test_rule": "system_standard",
+      "builtin": false
+    },
+    "FW_Upgrade": {
+      "id": "FW_Upgrade",
+      "name": "FW Upgrade / Final",
+      "icon": "💾",
+      "description": "Flash firmware, MD5, personnalisation SFIS, tests finaux middleware — logs 1+FW_Upgrade-*.log et 1+Final-*.log",
+      "color": "#16a34a",
+      "default_parser": "parse_fwfinal_v1",
+      "default_extractor": "extract_none",
+      "default_test_rule": "fwfinal_standard",
+      "builtin": false
+    }
+  },
+  "parsers": {
+    "parse_fe_v2": {
+      "id": "parse_fe_v2",
+      "name": "Parser FE v2 (DVB-C/S/T)",
+      "description": "Extrait les blocs FE_ConnectCab / FE_ConnectSat / FE_Connect TER et FE_GetSignalInfos.",
+      "module_file": "check_fe_log.py",
+      "function": "parse_log",
+      "compatible_modules": [
+        "FE"
+      ],
+      "detection_patterns": [
+        "FE_ConnectCab",
+        "FE_ConnectSat",
+        "FE_Connect TER",
+        "FE_GetSignalInfos",
+        "DVB",
+        "FE_QAM"
+      ],
+      "builtin": true
+    },
+    "parse_rf_v15": {
+      "id": "parse_rf_v15",
+      "name": "Parser RF v15 (Wi-Fi + BT)",
+      "description": "Extrait TEST_VERIFY EVM/MASK/PER pour Wi-Fi 2.4/5 GHz et Bluetooth.",
+      "module_file": "check_rf_log.py",
+      "function": "parse_log",
+      "compatible_modules": [
+        "RF_WiFi",
+        "RF_BT"
+      ],
+      "detection_patterns": [
+        "TestFlow_RF",
+        "IQfact",
+        "LitePoint",
+        "pathloss",
+        "RF_Centimani",
+        "WIFI_TestFlow",
+        "TEST_VERIFY"
+      ],
+      "builtin": true
+    },
+    "parse_boardlevel_v1": {
+      "id": "parse_boardlevel_v1",
+      "name": "Parser BoardLevel v1 (ICT Tensions + Boot)",
+      "description": "Extrait les mesures de tension ICT (CurrentTestID validation), les étapes @STEP et les commandes SagemTests depuis les logs 1+BoardLevel-*.log.",
+      "module_file": "parse_boardlevel_v1.py",
+      "function": "parse_log",
+      "compatible_modules": [
+        "BoardLevel"
+      ],
+      "detection_patterns": [
+        "Boardlevel",
+        "TestFlow_Boardlevel",
+        "Measure Voltage",
+        "Boot Up Check",
+        "PT15700",
+        "PT15600"
+      ],
+      "builtin": false
+    },
+    "parse_system_v1": {
+      "id": "parse_system_v1",
+      "name": "Parser System v1 (HDMI/ETH/USB/LED/BT radiated)",
+      "description": "Extrait les mesures fonctionnelles (HDMI EDID, Ethernet ping ms, USB, LED R/G/B/CIE, Wi-Fi/BT radiated power) depuis les logs 1+System-*.log.",
+      "module_file": "parse_system_v1.py",
+      "function": "parse_log",
+      "compatible_modules": [
+        "System"
+      ],
+      "detection_patterns": [
+        "TestFlow_System",
+        "TestFlow_2026",
+        "CENTIMANI",
+        "HDMIPath",
+        "DELETE HDMI",
+        "LED_RED_TEST",
+        "HDMI_EDID",
+        "WithReset"
+      ],
+      "builtin": false
+    },
+    "parse_fwfinal_v1": {
+      "id": "parse_fwfinal_v1",
+      "name": "Parser FW_Upgrade / Final v1",
+      "description": "Extrait les résultats de flash firmware, vérification MD5, CheckRoute SFIS, personnalisation et tests finaux depuis les logs 1+FW_Upgrade-*.log et 1+Final-*.log.",
+      "module_file": "parse_fwfinal_v1.py",
+      "function": "parse_log",
+      "compatible_modules": [
+        "FW_Upgrade"
+      ],
+      "detection_patterns": [
+        "ScanLabel",
+        "FWUpgrade",
+        "FW_Upgrade",
+        "TestFlow_FW",
+        "TestFlow.*Final",
+        "TestFlow-.*Final",
+        "FINAL",
+        "check_SW"
+      ],
+      "builtin": false
+    }
+  },
+  "extractors": {
+    "extract_fe_v2": {
+      "id": "extract_fe_v2",
+      "name": "Extractor FE ICP v2",
+      "description": "Extrait les tests FE depuis les PDF ICP. Supporte DVB-C, DVB-S/S2, DVB-T/T2.",
+      "module_file": "icp_fe_extract.py",
+      "function": "extract_fe_tests",
+      "compatible_modules": [
+        "FE"
+      ],
+      "pdf_markers": [
+        "Test#",
+        "FE_SAT",
+        "FE_DVB",
+        "J83",
+        "Frequency",
+        "DVB-C",
+        "DVB-S",
+        "DVB-T"
+      ],
+      "builtin": true
+    },
+    "extract_rf_v3": {
+      "id": "extract_rf_v3",
+      "name": "Extractor RF/BT ICP v3",
+      "description": "Extrait les limites Wi-Fi (2.4/5 GHz) et Bluetooth depuis les PDF ICP.",
+      "module_file": "icp_wifi_extract.py",
+      "function": "extract_rf_limits",
+      "compatible_modules": [
+        "RF_WiFi",
+        "RF_BT"
+      ],
+      "pdf_markers": [
+        "Wi-Fi",
+        "Bluetooth",
+        "CONDUCTED TESTS",
+        "Frequency",
+        "Modulation",
+        "EVM",
+        "PER"
+      ],
+      "builtin": true
+    },
+    "extract_none": {
+      "id": "extract_none",
+      "name": "Aucun extractor (log uniquement)",
+      "description": "À utiliser pour les modules qui ne nécessitent pas d'extraction depuis un PDF ICP (BoardLevel, System, FW_Upgrade).",
+      "module_file": "",
+      "function": "",
+      "compatible_modules": [
+        "BoardLevel",
+        "System",
+        "FW_Upgrade"
+      ],
+      "pdf_markers": [],
+      "builtin": true
+    }
+  },
+  "test_rules": {
+    "fe_strict": {
+      "id": "fe_strict",
+      "name": "FE Strict — Aucun paramètre manquant",
+      "description": "Tous les paramètres ICP doivent être présents dans le log. Échec si manquant.",
+      "compatible_modules": [
+        "FE"
+      ],
+      "settings": {
+        "strict_mode": true,
+        "freq_tolerance_mhz": 1,
+        "missing_policy": "fail"
+      },
+      "builtin": true
+    },
+    "fe_standard": {
+      "id": "fe_standard",
+      "name": "FE Standard — Avertissement si manquant",
+      "description": "Paramètres manquants génèrent un avertissement mais pas d'échec global.",
+      "compatible_modules": [
+        "FE"
+      ],
+      "settings": {
+        "strict_mode": false,
+        "freq_tolerance_mhz": 1,
+        "missing_policy": "warning"
+      },
+      "builtin": true
+    },
+    "rf_mandatory_only": {
+      "id": "rf_mandatory_only",
+      "name": "RF Mandatory Only (--opt)",
+      "description": "Ignore les tests RF avec Mandatory=false dans les limites ICP.",
+      "compatible_modules": [
+        "RF_WiFi",
+        "RF_BT"
+      ],
+      "settings": {
+        "opt_mode": true,
+        "missing_policy": "warning"
+      },
+      "builtin": true
+    },
+    "rf_all_tests": {
+      "id": "rf_all_tests",
+      "name": "RF All Tests",
+      "description": "Valide tous les tests RF, y compris ceux avec Mandatory=false.",
+      "compatible_modules": [
+        "RF_WiFi",
+        "RF_BT"
+      ],
+      "settings": {
+        "opt_mode": false,
+        "missing_policy": "warning"
+      },
+      "builtin": true
+    },
+    "boardlevel_standard": {
+      "id": "boardlevel_standard",
+      "name": "BoardLevel Standard — Étapes + Tensions",
+      "description": "Valide les mesures de tension ICT et les étapes @STEP du log BoardLevel. FAIL si une tension est hors limites ou une étape échoue.",
+      "compatible_modules": [
+        "BoardLevel"
+      ],
+      "settings": {
+        "strict_mode": false,
+        "missing_policy": "warning"
+      },
+      "builtin": true
+    },
+    "system_standard": {
+      "id": "system_standard",
+      "name": "System Standard — Fonctionnel complet",
+      "description": "Valide HDMI, Ethernet, USB, LED, Boutons, IR, Wi-Fi/BT radiated, température CPU. FAIL si un paramètre dépasse ses limites.",
+      "compatible_modules": [
+        "System"
+      ],
+      "settings": {
+        "strict_mode": false,
+        "missing_policy": "warning"
+      },
+      "builtin": true
+    },
+    "fwfinal_standard": {
+      "id": "fwfinal_standard",
+      "name": "FW/Final Standard — Étapes critiques",
+      "description": "Vérifie CheckRoute SFIS, flash FW, MD5, personnalisation, boot final. FAIL si une étape critique échoue.",
+      "compatible_modules": [
+        "FW_Upgrade"
+      ],
+      "settings": {
+        "strict_mode": false,
+        "missing_policy": "warning"
+      },
+      "builtin": true
+    }
+  },
+  "regexes": {
+    "fe_connect_cab": {
+      "id": "fe_connect_cab",
+      "name": "FE Connect Cable (DVB-C)",
+      "description": "Détecte une ligne FE_ConnectCab : extrait la fréquence (MHz) et le niveau QAM (ex. QAM256).",
+      "pattern": "^FE_ConnectCab\\s+\\d+\\s+(\\d+)\\s+\\d+\\s+FE_\\w+\\s+FE_QAM(\\d+)",
+      "flags": [
+        "MULTILINE"
+      ],
+      "groups": [
+        "frequency_mhz",
+        "qam_order"
+      ],
+      "scope": "fe_log",
+      "used_in": "check_fe_log.py::RE_CONNECT_CAB",
+      "example": "FE_ConnectCab 0 498 6875 FE_J83_B FE_QAM256",
+      "builtin": true
+    },
+    "fe_connect_sat": {
+      "id": "fe_connect_sat",
+      "name": "FE Connect Satellite (DVB-S/S2)",
+      "description": "Détecte FE_ConnectSat : extrait la fréquence (kHz) et le standard DVB (DVB_S ou DVB_S2).",
+      "pattern": "^FE_ConnectSat\\s+\\d+\\s+(\\d+)\\s+\\d+\\s+[VH]\\s+OPAL_FE_(DVB_S2|DVB_S)",
+      "flags": [
+        "MULTILINE"
+      ],
+      "groups": [
+        "frequency_khz",
+        "dvb_standard"
+      ],
+      "scope": "fe_log",
+      "used_in": "check_fe_log.py::RE_CONNECT_SAT",
+      "example": "FE_ConnectSat 0 1474000 27500 V OPAL_FE_DVB_S",
+      "builtin": true
+    },
+    "fe_connect_tnt": {
+      "id": "fe_connect_tnt",
+      "name": "FE Connect Terrestre (DVB-T/T2)",
+      "description": "Détecte FE_Connect TER : extrait fréquence (kHz), génération T/T2, largeur de bande optionnelle.",
+      "pattern": "^FE_Connect\\s+TER\\s+\\d+\\s+(\\d+)\\s+FE_DVB_(T2|T)(?:\\s+FE_BAND_(\\d+)MHZ)?",
+      "flags": [
+        "MULTILINE"
+      ],
+      "groups": [
+        "frequency_khz",
+        "dvb_gen",
+        "bandwidth_mhz"
+      ],
+      "scope": "fe_log",
+      "used_in": "check_fe_log.py::RE_CONNECT_TNT",
+      "example": "FE_Connect TER 0 474000 FE_DVB_T2 FE_BAND_8MHZ",
+      "builtin": true
+    },
+    "fe_siginfos_block": {
+      "id": "fe_siginfos_block",
+      "name": "FE GetSignalInfos Block",
+      "description": "Isole le bloc complet FE_GetSignalInfos 0 … jusqu'au prochain prompt TT> ou fin de texte.",
+      "pattern": "FE_GetSignalInfos\\s+0.*?(?=\\nTT>|$)",
+      "flags": [
+        "DOTALL"
+      ],
+      "groups": [
+        "full_block"
+      ],
+      "scope": "fe_log",
+      "used_in": "check_fe_log.py::RE_SIGINFOS_BLOCK",
+      "example": "FE_GetSignalInfos 0\nViterbi Bit Error Rate = 12E-7\n...",
+      "builtin": true
+    },
+    "fe_viterbi_ber": {
+      "id": "fe_viterbi_ber",
+      "name": "Viterbi BER",
+      "description": "Extrait le taux d'erreur binaire Viterbi au format NE-7 (ex. 12E-7 → valeur 12).",
+      "pattern": "Viterbi\\s+Bit\\s+Error\\s+Rate\\s*=\\s*(\\d+)E-7",
+      "flags": [],
+      "groups": [
+        "ber_value"
+      ],
+      "scope": "fe_log",
+      "used_in": "check_fe_log.py::REGEX_MAP[Viterbi Bit Error Rate]",
+      "example": "Viterbi Bit Error Rate = 12E-7",
+      "builtin": true
+    },
+    "fe_snr": {
+      "id": "fe_snr",
+      "name": "Signal to Noise Ratio (SNR / CNR)",
+      "description": "Extrait le rapport signal/bruit en dB (valeur décimale).",
+      "pattern": "Signal\\s+to\\s+Noise\\s+Ratio\\s*=\\s*([\\d\\.]+)",
+      "flags": [],
+      "groups": [
+        "snr_db"
+      ],
+      "scope": "fe_log",
+      "used_in": "check_fe_log.py::REGEX_MAP[Signal to Noise Ratio]",
+      "example": "Signal to Noise Ratio = 34.5",
+      "builtin": true
+    },
+    "fe_uncorrected_blocks": {
+      "id": "fe_uncorrected_blocks",
+      "name": "Uncorrected Blocks",
+      "description": "Extrait le nombre de blocs non corrigés (entier).",
+      "pattern": "uncorrected\\s+blocks\\s*=\\s*(\\d+)",
+      "flags": [],
+      "groups": [
+        "block_count"
+      ],
+      "scope": "fe_log",
+      "used_in": "check_fe_log.py::REGEX_MAP[Number of uncorrected blocks]",
+      "example": "Number of uncorrected blocks = 0",
+      "builtin": true
+    },
+    "fe_freq_offset": {
+      "id": "fe_freq_offset",
+      "name": "Frequency Offset (FE log)",
+      "description": "Extrait l'écart de fréquence mesuré en kHz (entier signé).",
+      "pattern": "Frequency\\s+Offset\\s*=\\s*(-?\\d+)",
+      "flags": [],
+      "groups": [
+        "offset_khz"
+      ],
+      "scope": "fe_log",
+      "used_in": "check_fe_log.py::REGEX_MAP[Frequency Offset]",
+      "example": "Frequency Offset = -45",
+      "builtin": true
+    },
+    "fe_symbol_rate_offset": {
+      "id": "fe_symbol_rate_offset",
+      "name": "Symbol Rate Offset",
+      "description": "Extrait le décalage de débit symbole en ppm (entier signé).",
+      "pattern": "Symbol\\s+Rate\\s+Offset\\s*=\\s*(-?\\d+)",
+      "flags": [],
+      "groups": [
+        "offset_ppm"
+      ],
+      "scope": "fe_log",
+      "used_in": "check_fe_log.py::REGEX_MAP[Symbol Rate Offset]",
+      "example": "Symbol Rate Offset = 88",
+      "builtin": true
+    },
+    "fe_power_dbm": {
+      "id": "fe_power_dbm",
+      "name": "Power in dBm (RSSI)",
+      "description": "Extrait la puissance reçue RSSI en dBm (entier signé).",
+      "pattern": "Power\\s+in\\s+dBm\\s*=\\s*(-?\\d+)",
+      "flags": [],
+      "groups": [
+        "power_dbm"
+      ],
+      "scope": "fe_log",
+      "used_in": "check_fe_log.py::REGEX_MAP[Power in dBm]",
+      "example": "Power in dBm = -50",
+      "builtin": true
+    },
+    "fe_bandwidth": {
+      "id": "fe_bandwidth",
+      "name": "Bandwidth MHz",
+      "description": "Extrait la largeur de bande DVB-T/T2 en MHz.",
+      "pattern": "Bandwidth\\s*\\[MHz\\]\\s*=\\s*(\\d+)",
+      "flags": [],
+      "groups": [
+        "bandwidth_mhz"
+      ],
+      "scope": "fe_log",
+      "used_in": "check_fe_log.py::REGEX_BANDWIDTH_PARAM",
+      "example": "Bandwidth [MHz] = 8",
+      "builtin": true
+    },
+    "rf_test_evm_spectrum": {
+      "id": "rf_test_evm_spectrum",
+      "name": "RF Test EVM Mask Power Spectrum",
+      "description": "Détecte les blocs TEST_VERIFY EVM MASK POWER SPECTRUM (Wi-Fi TX).",
+      "pattern": "TEST_VERIFY\\s+EVM\\s+MASK\\s+POWER\\s+SPECTRUM",
+      "flags": [
+        "IGNORECASE"
+      ],
+      "groups": [],
+      "scope": "rf_log",
+      "used_in": "check_rf_log.py::WIFI_SPECTRUM",
+      "example": "TEST_VERIFY EVM MASK POWER SPECTRUM 2412 MCS7 HT20 ANT1",
+      "builtin": true
+    },
+    "rf_test_per": {
+      "id": "rf_test_per",
+      "name": "RF Test PER (Packet Error Rate)",
+      "description": "Détecte les blocs TEST_VERIFY PER (réception Wi-Fi/BT).",
+      "pattern": "TEST_VERIFY\\s+PER",
+      "flags": [
+        "IGNORECASE"
+      ],
+      "groups": [],
+      "scope": "rf_log",
+      "used_in": "check_rf_log.py::WIFI_PER",
+      "example": "TEST_VERIFY PER 2412 MCS7 HT20",
+      "builtin": true
+    },
+    "rf_frequency": {
+      "id": "rf_frequency",
+      "name": "RF Frequency (4–5 digits)",
+      "description": "Extrait une fréquence Wi-Fi/BT de 4 ou 5 chiffres (ex. 2412, 5180).",
+      "pattern": "(\\d{4,5})",
+      "flags": [],
+      "groups": [
+        "frequency_mhz"
+      ],
+      "scope": "rf_log",
+      "used_in": "check_rf_log.py::FREQ_PAT",
+      "example": "TEST_VERIFY EVM MASK POWER SPECTRUM 2412 MCS7 HT20 ANT1",
+      "builtin": true
+    },
+    "rf_antenna": {
+      "id": "rf_antenna",
+      "name": "RF Antenna (ANT1 / ANT2)",
+      "description": "Extrait l'identifiant d'antenne ANTx depuis l'en-tête de test RF.",
+      "pattern": "\\bANT[\\s\\-]?(\\d)\\b",
+      "flags": [
+        "IGNORECASE"
+      ],
+      "groups": [
+        "antenna_index"
+      ],
+      "scope": "rf_log",
+      "used_in": "check_rf_log.py::ANT_PAT",
+      "example": "TEST_VERIFY EVM MASK POWER SPECTRUM 2412 MCS7 HT20 ANT1",
+      "builtin": true
+    },
+    "rf_param_with_limits": {
+      "id": "rf_param_with_limits",
+      "name": "RF Paramètre avec limites (min, max)",
+      "description": "Extrait un paramètre RF au format NOM: valeur unité (min, max).",
+      "pattern": "(?P<n>[A-Z0-9_]+)\\s*:\\s*(?P<val>-?\\d+(?:\\.\\d+)?)\\s*(?P<unit>[a-zA-Z%/ ]+)?\\s*\\(\\s*(?P<min>-?\\d+(?:\\.\\d+)?)?\\s*,\\s*(?P<max>-?\\d+(?:\\.\\d+)?)?\\s*\\)",
+      "flags": [],
+      "groups": [
+        "name",
+        "value",
+        "unit",
+        "min",
+        "max"
+      ],
+      "scope": "rf_log",
+      "used_in": "check_rf_log.py::PARAM1",
+      "example": "POWER_AVG_DBM: 16.8 dBm (14.0, 20.0)",
+      "builtin": true
+    },
+    "rf_param_simple": {
+      "id": "rf_param_simple",
+      "name": "RF Paramètre simple (valeur + unité)",
+      "description": "Extrait un paramètre RF sans limites, format NOM: valeur unité.",
+      "pattern": "(?P<n>[A-Z0-9_]+)\\s*:\\s*(?P<val>-?\\d+(?:\\.\\d+)?)\\s*(?P<unit>[a-zA-Z%/ ]+)?",
+      "flags": [],
+      "groups": [
+        "name",
+        "value",
+        "unit"
+      ],
+      "scope": "rf_log",
+      "used_in": "check_rf_log.py::PARAM_SIMPLE",
+      "example": "EVM_DB_AVG_S1: -31.2 dB",
+      "builtin": true
+    },
+    "icp_fe_test_header": {
+      "id": "icp_fe_test_header",
+      "name": "ICP FE En-tête de test (Test#N)",
+      "description": "Détecte l'en-tête de section de test FE dans le PDF ICP (ex. Test#1).",
+      "pattern": "Test#\\s*(\\d+)",
+      "flags": [
+        "IGNORECASE"
+      ],
+      "groups": [
+        "test_number"
+      ],
+      "scope": "icp_fe",
+      "used_in": "icp_fe_extract.py::RE_TEST_HEADER",
+      "example": "Test#1",
+      "builtin": true
+    },
+    "icp_fe_freq_line": {
+      "id": "icp_fe_freq_line",
+      "name": "ICP FE Ligne fréquence / modulation",
+      "description": "Extrait fréquence (MHz), modulation (QAM/PSK) et standard DVB depuis le PDF ICP FE.",
+      "pattern": "Frequency\\s*([0-9]+(?:\\.[0-9]+)?)\\s*MHz\\s*/\\s*([0-9]+(?:MHz)?|QPSK|8PSK|[0-9]+QAM)\\s*(DVB[\\s\\-]T2|DVB[\\s\\-]T|DVB[\\s\\-]S2|DVB[\\s\\-]S|DVB\\-C|J83\\.B)",
+      "flags": [
+        "IGNORECASE"
+      ],
+      "groups": [
+        "frequency_mhz",
+        "modulation",
+        "dvb_standard"
+      ],
+      "scope": "icp_fe",
+      "used_in": "icp_fe_extract.py::RE_FREQ_LINE",
+      "example": "Frequency 498 MHz / 256QAM DVB-C",
+      "builtin": true
+    },
+    "icp_fe_label_line": {
+      "id": "icp_fe_label_line",
+      "name": "ICP FE Ligne étiquette de section",
+      "description": "Détecte les lignes FE_SAT / FE_DVB-C / FE_J83.B avec fréquence et libellé de test.",
+      "pattern": "(FE(?:_|[\\s])?(?:SAT|DVB\\-C|J83\\.B|DVB\\-TT2))\\s*([0-9]+(?:\\.[0-9]+)?)\\s*MHz\\s*:\\s*(.+)",
+      "flags": [
+        "IGNORECASE"
+      ],
+      "groups": [
+        "fe_type",
+        "frequency_mhz",
+        "label"
+      ],
+      "scope": "icp_fe",
+      "used_in": "icp_fe_extract.py::RE_LABEL_LINE",
+      "example": "FE_DVB-C 498 MHz : Viterbi BER",
+      "builtin": true
+    },
+    "icp_fe_number": {
+      "id": "icp_fe_number",
+      "name": "ICP FE Nombre (entier ou décimal signé)",
+      "description": "Extrait tout nombre décimal signé dans une ligne du PDF ICP (limites Min/Max).",
+      "pattern": "-?\\d+(?:[.,]\\d+)?",
+      "flags": [],
+      "groups": [
+        "number"
+      ],
+      "scope": "icp_fe",
+      "used_in": "icp_fe_extract.py::RE_NUMBER",
+      "example": "-65  ou  34.5  ou  -200",
+      "builtin": true
+    },
+    "icp_fe_unit": {
+      "id": "icp_fe_unit",
+      "name": "ICP FE Unité de mesure",
+      "description": "Détecte les unités valides dans le PDF ICP FE : dBm, dB, kHz, ppm, %, none, .10-7.",
+      "pattern": "\\b(dBm|dB|kHz|ppm|%|none|\\.10\\-7|Hz)\\b",
+      "flags": [
+        "IGNORECASE"
+      ],
+      "groups": [
+        "unit"
+      ],
+      "scope": "icp_fe",
+      "used_in": "icp_fe_extract.py::RE_UNIT",
+      "example": "dBm  ou  kHz  ou  .10-7",
+      "builtin": true
+    },
+    "icp_rf_freq_mod_block": {
+      "id": "icp_rf_freq_mod_block",
+      "name": "ICP RF Bloc fréquence / modulation",
+      "description": "Identifie un bloc de test RF dans le PDF ICP avec fréquence et modulation (Wi-Fi / BT).",
+      "pattern": "(\\d{4,5})\\s*MHz.*?(MCS\\d+\\s+(?:HT|VHT|HE)\\d+|GFSK|DQPSK|8DPSK|QPSK)",
+      "flags": [
+        "IGNORECASE",
+        "DOTALL"
+      ],
+      "groups": [
+        "frequency_mhz",
+        "modulation"
+      ],
+      "scope": "icp_rf",
+      "used_in": "icp_wifi_extract.py::RE_FREQ_MOD",
+      "example": "2412 MHz / MCS7 HT20",
+      "builtin": true
+    },
+    "icp_rf_float": {
+      "id": "icp_rf_float",
+      "name": "ICP RF Nombre décimal signé",
+      "description": "Extrait tout nombre décimal signé dans le PDF ICP RF (puissances, EVM, PER…).",
+      "pattern": "-?\\d+(?:[.,]\\d+)?",
+      "flags": [],
+      "groups": [
+        "value"
+      ],
+      "scope": "icp_rf",
+      "used_in": "icp_wifi_extract.py::RE_FLOAT",
+      "example": "-28.0  ou  17.5",
+      "builtin": true
+    },
+    "icp_rf_test_label": {
+      "id": "icp_rf_test_label",
+      "name": "ICP RF Étiquette de test",
+      "description": "Détecte les lignes 'Test NOM : description' dans les PDF ICP RF/BT.",
+      "pattern": "\\bTest\\s+([A-Z0-9_]+)\\s*:\\s*(.+)",
+      "flags": [],
+      "groups": [
+        "test_name",
+        "description"
+      ],
+      "scope": "icp_rf",
+      "used_in": "icp_wifi_extract.py::RE_TEST_LABEL",
+      "example": "Test TX_POWER : Puissance TX mesurée",
+      "builtin": true
+    },
+    "icp_bt_freq_drift": {
+      "id": "icp_bt_freq_drift",
+      "name": "BT Frequency Drift (limites kHz)",
+      "description": "Extrait les limites min/max de dérive de fréquence Bluetooth en kHz.",
+      "pattern": "frequency\\s*drift.*?([\\-\\u2013\\u2014]?\\d+).*?([\\-\\u2013\\u2014]?\\d+)\\s*kHz",
+      "flags": [
+        "IGNORECASE",
+        "DOTALL"
+      ],
+      "groups": [
+        "drift_min_khz",
+        "drift_max_khz"
+      ],
+      "scope": "icp_rf",
+      "used_in": "icp_wifi_extract.py::RE_FREQ_DRIFT",
+      "example": "Frequency drift : -25 to +25 kHz",
+      "builtin": true
+    },
+    "icp_bt_max_drift_rate": {
+      "id": "icp_bt_max_drift_rate",
+      "name": "BT Max Drift Rate (kHz/50µs)",
+      "description": "Extrait la limite de vitesse de dérive maximale Bluetooth (kHz par 50 µs).",
+      "pattern": "max\\s*drift\\s*rate.*?([0-9]+(?:[.,][0-9]+)?)\\s*kHz\\s*/\\s*50",
+      "flags": [
+        "IGNORECASE"
+      ],
+      "groups": [
+        "drift_rate_khz_per_50us"
+      ],
+      "scope": "icp_rf",
+      "used_in": "icp_wifi_extract.py::RE_MAX_DRIFT_RATE",
+      "example": "Max drift rate : 400 kHz/50",
+      "builtin": true
+    },
+    "icp_bt_freq_deviation": {
+      "id": "icp_bt_freq_deviation",
+      "name": "BT Frequency Deviation df2",
+      "description": "Extrait la déviation de fréquence Bluetooth df2 (kHz).",
+      "pattern": "frequency\\s*deviation\\s*df2.*?([\\-\\u2013\\u2014]?\\d+)",
+      "flags": [
+        "IGNORECASE",
+        "DOTALL"
+      ],
+      "groups": [
+        "deviation_khz"
+      ],
+      "scope": "icp_rf",
+      "used_in": "icp_wifi_extract.py::RE_DF2",
+      "example": "Frequency Deviation df2 : -40 kHz",
+      "builtin": true
+    }
+  }
+}

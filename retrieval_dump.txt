@@ -1,0 +1,1202 @@
+--- passage 1 | page 13 | score=0.549 ---
+Ce document et les informations qu'il contient sont la propriété de Sagemcom. Ils ne doivent pas être copiés, ni communiqués à un tiers sans l’autorisation 
+préalable et écrite de Sagemcom. 
+13
+8.1.3 TESTS 
+ Test#1 
+Frequency 74MHz / 64QAM DVB-C test signal 
+ 
+Min 
+Max 
+Unit 
+Test_1_BER 
+FEDVB-C 74MHz : Viterbi BER 
+ 
+50 
+2000 
+.10-7 
+Test_1_UNCOR 
+FEDVB-C 74MHz : Uncorrected blocks 
+ 
+0 
+0 
+ 
+Test_1_RSSI 
+FEDVB-C 74MHz : RSSI 
+ 
+-69 
+-63 
+dBm 
+Test_1_CN 
+FEDVB-C 74MHz : Carrier-to-Noise Ratio 
+ 
+25 
+27 
+dB 
+Test_1_FO 
+FEDVB-C 74MHz : Frequency Offset 
+ 
+-20 
+20 
+kHz 
+Test_1_RO 
+FEDVB-C 74MHz : Rate Offset 
+ 
+-50 
+50 
+ppm 
+-66 26 20 50 
+ 
+Test#2  
+Frequency 386MHz / 256QAM DVB-C test signal 
+ 
+Min 
+Max 
+Unit 
+Test_2_BER 
+FEDVB-C 386MHz : Viterbi BER 
+ 
+50 
+2000 
+.10-7 
+Test_2_UNCOR 
+FEDVB-C 386MHz : Uncorrected blocks 
+ 
+0 
+0 
+ 
+Test_2_RSSI 
+FEDVB-C 386MHz : RSSI 
+ 
+-58 
+-52 
+dBm 
+Test_2_CN 
+FEDVB-C 386MHz : Carrier-to-Noise Ratio 
+ 
+31 
+33 
+dB 
+Test_2_FO 
+FEDVB-C 386MHz : Frequency Offset 
+ 
+-20 
+20 
+kHz 
+Test_2_RO 
+FEDVB-C 386MHz : Rate Offset 
+ 
+-50 
+50 
+ppm 
+-55 32 20 50 
+Test#3 
+Frequency 666MHz / 64QAM DVB-C test signal 
+ 
+Min 
+Max 
+Unit 
+Test_3_BER 
+FEDVB-C 666MHz : Viterbi BER 
+ 
+50 
+2000 
+.10-7 
+Test_3_UNCOR 
+FEDVB-C 666MHz : Uncorrected blocks 
+ 
+0 
+0 
+ 
+Test_3_RSSI 
+FEDVB-C 666MHz : RSSI 
+ 
+-69 
+-63 
+dBm 
+Test_3_CN 
+FEDVB-C 666MHz : Carrier-to-Noise Ratio 
+ 
+25 
+27 
+dB 
+Test_3_FO 
+FEDVB-C 666MHz : Frequency Offset 
+ 
+-20 
+20 
+kHz 
+Test_3_RO 
+FEDVB-C 666MHz : Rate Offset 
+ 
+-50 
+50 
+ppm 
+-66 26 20 50 
+Test#4  
+Frequency 850MHz / 256QAM DVB-C test signal 
+ 
+Min 
+Max 
+Unit 
+Test_4_BER 
+FEDVB-C 850MHz : Viterbi BER 
+ 
+50 
+2000 
+.10-7 
+Test_4_UNCOR 
+FEDVB-C 850MHz : Uncorrected blocks 
+ 
+0 
+0 
+ 
+Test_4_RSSI 
+FEDVB-C 850MHz : RSSI 
+ 
+-58 
+-52 
+dBm 
+Test_4_CN 
+FEDVB-C 850MHz : Carrier-to-Noise Ratio 
+ 
+31 
+33 
+dB 
+Test_4_FO 
+FEDVB-C 850MHz : Frequency Offset 
+ 
+-20 
+20 
+kHz 
+Test_4_RO 
+FEDVB-C 850MHz : Rate Offset 
+ 
+-50 
+50 
+ppm 
+-55 32 20 50 
+ 
+8.1.1 GetPid test  
+The STB has to be locked on a valid cable frequency in order to perform this test. 
+Next, send the FE_GetPID command and check that the return value is aligned with the limits below.  
+ 
+ 
+Min 
+Max 
+Unit 
+Test_PID 
+PID information on locked frequency 
+ 
+1 
+1
+
+--- passage 2 | page 24 | score=0.528 ---
+Ce document et les informations qu'il contient sont la propriété de Sagemcom. Ils ne doivent pas être copiés, ni communiqués à un tiers sans l’autorisation 
+préalable et écrite de Sagemcom. 
+24
+• 
+Test TX_BLE : LE 1M PRBS 
+ 
+ 
+Frequency 
+2402MHz 
+Modulation 
+LE 1M PRBS 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+4 
+0.5 
+7 
+dBm 
+Frequency drift 
+NA 
+-125 
++125 
+kHz 
+Max drift rate 
+NA 
+ 
+20 
+kHz/50µs 
+Frequency deviation df2 
+NA 
+185 
+ 
+kHz 
+ 
+Frequency 
+2480MHz 
+Modulation 
+LE 1M PRBS 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+5 
+1.5 
+8 
+dBm 
+Frequency drift 
+NA 
+-125 
++125 
+kHz 
+Max drift rate 
+NA 
+ 
+20 
+kHz/50µs 
+Frequency deviation df2 
+NA 
+185 
+ 
+kHz
+
+--- passage 3 | page 25 | score=0.510 ---
+Ce document et les informations qu'il contient sont la propriété de Sagemcom. Ils ne doivent pas être copiés, ni communiqués à un tiers sans l’autorisation 
+préalable et écrite de Sagemcom. 
+25
+RX tests 
+For all listed frequencies and modulations, measurements shall comply with BER/PER limits. 
+ 
+• 
+Test RX_BR : 1-DH5 PRBS 
+ 
+ 
+Frequency 
+2480MHz 
+Modulation 
+1-DH5 PRBS 
+ 
+Target 
+Min 
+Max 
+Unit 
+BER 
+at RX Power -95dBm 
+NA 
+0 
+0.1 
+% 
+ 
+• 
+Test RX_EDR : 3-DH5 PRBS 
+ 
+ 
+Frequency 
+2402MHz 
+Modulation 
+3-DH5 PRBS 
+ 
+Target 
+Min 
+Max 
+Unit 
+BER 
+at RX Power -85dBm 
+NA 
+0 
+0.1 
+% 
+ 
+• 
+Test RX_BLE : LE 1M PRBS (with dirty TX Whitening ON) 
+ 
+ 
+Frequency 
+2442MHz 
+Modulation 
+LE 1M PRBS 
+ 
+Target 
+Min 
+Max 
+Unit 
+PER 
+at RX Power -95dBm 
+NA 
+0 
+30 
+%
+
+--- passage 4 | page 33 | score=0.487 ---
+Ce document et les informations qu'il contient sont la propriété de Sagemcom. Ils ne doivent pas être copiés, ni communiqués à un tiers sans l’autorisation 
+préalable et écrite de Sagemcom. 
+33
+8.10.4 CONDUCTED TESTS – Wi-Fi 5GHz 
+TX tests 
+For all listed frequencies and modulations, we measure/verify Output Power, Mask margin compliance, EVM, 
+Freq tolerance and LO leakage for each RF chain. 
+ 
+ 
+• 
+Test TX_5G_1 : MCS0 vHT20 (mode 802.11ac) 
+ 20 
+ 
+Frequency 
+5180MHz 
+Modulation 
+MCS0 vHT20 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+18.5 
+16.5 
+20.5 
+dBm 
+EVM 
+NA 
+NA 
+-5 
+dB 
+MASK (1) 
+NA 
+0 
+NA 
+dB 
+Frequency tolerance 
+NA 
+-20 
++20 
+ppm 
+LO Leakage  
+NA 
+-99 
+-17.5 
+dB 
+(1) should comply with IEEE80211ac 
+ 
+ 
+• 
+Test TX_5G_2 : MCS9 vHT40 (mode 802.11ac) 
+ 15  
+ 
+Frequency 
+5230MHz 
+Modulation 
+MCS9 vHT40 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+13.5 
+11.5 
+15.5 
+dBm 
+EVM 
+NA 
+NA 
+-32 
+dB 
+MASK (1) 
+NA 
+0 
+NA 
+dB 
+Frequency tolerance 
+NA 
+-20 
++20 
+ppm 
+LO Leakage  
+NA 
+-99 
+-20.6 
+dB 
+(1) should comply with IEEE80211ac
+
+--- passage 5 | page 23 | score=0.485 ---
+Ce document et les informations qu'il contient sont la propriété de Sagemcom. Ils ne doivent pas être copiés, ni communiqués à un tiers sans l’autorisation 
+préalable et écrite de Sagemcom. 
+23
+8.8.3 LAUNCHING BLUETOOTH DRIVER 
+To activate the test driver, get the procedure relative to the board. 
+The PC communicates with the Bluetooth chipset. 
+Verify that the Bluetooth FW is aligned with the following configuration:  
+Firmware: STB_BCM4375B1_100.012_4375B1_UART_37_4MHz_fcbga_ipa_ref_stbda_class2.hcd 
+BR target power level: 5 
+BLE target power level: 5 
+ 
+8.8.4 CONDUCTED TESTS – BLUETOOTH 
+TX tests 
+For all listed frequencies and modulations, we measure/verify Output Power, Mask margin compliance, EVM, Freq 
+tolerance and LO leakage for each RF chain. 
+ 
+• 
+Test TX_BR : 1-DH5 PRBS 
+ 
+ 
+Frequency 
+2402MHz 
+Modulation 
+1-DH5 PRBS 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+4 
+0.5 
+7 
+dBm 
+Frequency drift 
+NA 
+-40 
++40 
+kHz 
+Max drift rate 
+NA 
+ 
+20 
+kHz/50µs 
+Frequency deviation df2 
+NA 
+115 
+ 
+kHz 
+ 
+Frequency 
+2480MHz 
+Modulation 
+1-DH5 PRBS 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+5 
+1.5 
+8 
+dBm 
+Frequency drift 
+NA 
+-40 
++40 
+kHz 
+Max drift rate 
+NA 
+ 
+20 
+kHz/50µs 
+Frequency deviation df2 
+NA 
+115 
+ 
+kHz 
+ 
+ 
+• 
+Test TX_EDR : 3-DH5 PRBS 
+ 
+ 
+Frequency 
+2402MHz 
+Modulation 
+3-DH5 PRBS 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+4 
+0 
+7.5 
+dBm 
+Frequency stability w0+wi 
+NA 
+-75 
++75 
+kHz
+
+--- passage 6 | page 36 | score=0.479 ---
+Ce document et les informations qu'il contient sont la propriété de Sagemcom. Ils ne doivent pas être copiés, ni communiqués à un tiers sans l’autorisation 
+préalable et écrite de Sagemcom. 
+36
+ 
+RX tests 
+• 
+Test RX_5G_1 : MCS0 vHT20 (mode 802.11ac) 
+ -97 
+ 
+Frequency 
+5180MHz 
+Modulation 
+MCS0 vHT20 
+ 
+Target 
+Min 
+Max 
+Unit 
+PER 
+RX Power -94dBm 
+NA 
+0 
+10 
+% 
+ 
+Frequency 
+5500MHz 
+Modulation 
+MCS0 vHT20 
+ 
+Target 
+Min 
+Max 
+Unit 
+PER 
+RX Power -94dBm 
+NA 
+0 
+10 
+% 
+ 
+Frequency 
+5700MHz 
+Modulation 
+MCS0 vHT20 
+ 
+Target 
+Min 
+Max 
+Unit 
+PER 
+RX Power -94dBm 
+NA 
+0 
+10 
+% 
+ 
+Frequency 
+5825MHz 
+Modulation 
+MCS0 vHT20 
+ 
+Target 
+Min 
+Max 
+Unit 
+PER 
+RX Power -94dBm 
+NA 
+0 
+10 
+% 
+ 
+ 
+• 
+Test RX_5G_2: HE-MCS11 vHT80 (mode 802.11ax) 
+ -60 
+ 
+Frequency 
+5210MHz 
+Modulation 
+HE-MCS11 vHT80 
+ 
+Target 
+Min 
+Max 
+Unit 
+PER 
+RX Power -57dBm 
+NA 
+0 
+10 
+% 
+ 
+Frequency 
+5530MHz 
+Modulation 
+HE-MCS11 vHT80 
+ 
+Target 
+Min 
+Max 
+Unit 
+PER 
+RX Power -57dBm 
+NA 
+0 
+10 
+% 
+ 
+Frequency 
+5775MHz 
+Modulation 
+HE-MCS11 vHT80 
+ 
+Target 
+Min 
+Max 
+Unit 
+PER 
+RX Power -57dBm 
+NA 
+0 
+10 
+%
+
+--- passage 7 | page 28 | score=0.477 ---
+Ce document et les informations qu'il contient sont la propriété de Sagemcom. Ils ne doivent pas être copiés, ni communiqués à un tiers sans l’autorisation 
+préalable et écrite de Sagemcom. 
+28
+8.9.4 CONDUCTED TESTS – Wi-Fi 2.4GHz 
+TX tests 
+For all listed frequencies and modulations, we measure/verify Output Power, Mask margin compliance, EVM, Freq 
+tolerance and LO leakage for each RF chain. 
+ 
+• 
+Test TX_2G_1 : MCS0 HT20 (mode 802.11n) 
+• 
+ 19 
+ 
+Frequency 
+2412MHz 
+Modulation 
+MCS0 HT20 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+17.5 
+15.5 
+19.5 
+dBm 
+EVM 
+NA 
+NA 
+-5 
+dB 
+MASK (1) 
+NA 
+PASS 
+PASS 
+- 
+Frequency tolerance 
+NA 
+-25 
++25 
+ppm 
+LO Leakage  
+NA 
+-99 
+-15 
+dB 
+(1) should comply with IEEE80211n 
+ 
+ 
+• 
+Test TX_2G_2 : MCS7 HT20 (mode 802.11n) 
+• 
+16 
+ 
+Frequency 
+2437MHz 
+Modulation 
+MCS7 HT20 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+14.5 
+12.5 
+16.5 
+dBm 
+EVM 
+NA 
+NA 
+-28 
+dB 
+MASK (1) 
+NA 
+PASS 
+PASS 
+- 
+Frequency tolerance 
+NA 
+-25 
++25 
+ppm 
+LO Leakage  
+NA 
+-99 
+-15 
+dB 
+ 
+Frequency 
+2462MHz 
+Modulation 
+MCS7 HT20 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+14.5 
+12.5 
+16.5 
+dBm 
+EVM 
+NA 
+NA 
+-28 
+dB 
+MASK (1) 
+NA 
+PASS 
+PASS 
+- 
+Frequency tolerance 
+NA 
+-25 
++25 
+ppm 
+LO Leakage  
+NA 
+-99 
+-15 
+dB 
+(1) should comply with IEEE80211n
+
+--- passage 8 | page 30 | score=0.474 ---
+Ce document et les informations qu'il contient sont la propriété de Sagemcom. Ils ne doivent pas être copiés, ni communiqués à un tiers sans l’autorisation 
+préalable et écrite de Sagemcom. 
+30
+RX tests 
+For all listed frequencies and modulations, we measure PER for each channel. 
+ 
+• 
+Test RX_2G_1 : MCS0 HT20 
+• 
+ -94 
+ 
+Frequency 
+2412MHz 
+Modulation 
+MCS0 HT20 
+ 
+Target 
+Min 
+Max 
+Unit 
+PER 
+at RX Power -91dBm 
+NA 
+0 
+10 
+% 
+ 
+• 
+Test RX_2G_2 : MCS7 HT20 
+• 
+ -74 
+ 
+Frequency 
+2437MHz 
+Modulation 
+MCS7 HT20 
+ 
+Target 
+Min 
+Max 
+Unit 
+PER 
+at RX Power -71dBm 
+NA 
+0 
+10 
+% 
+ 
+• 
+Test RX_2G_3 : HE-MCS9 HT20 
+• 
+-70 
+ 
+Frequency 
+2472MHz 
+Modulation 
+HE-MCS9 HT20 
+ 
+Target 
+Min 
+Max 
+Unit 
+PER 
+at RX Power -67dBm 
+NA 
+0 
+10 
+%
+
+--- passage 9 | page 14 | score=0.471 ---
+STS] |PxlClk |HActPx |HBlkPx |VActLn |VBlkLn |HSyOff |HSyWdt |VSyOff |VSyWdt |HImgSz |VImgSz |HBordr
+ 
+|VBordr |IsItrd |IsHPos |IsVPos |Audio | 
+[SAGEMTESTS] |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+----
+---+-------+-------+-------+-------+-------+ 
+[SAGEMTESTS] => HDMI_ReceiverEdid - PASSED <=
+
+--- passage 10 | page 35 | score=0.467 ---
+Ce document et les informations qu'il contient sont la propriété de Sagemcom. Ils ne doivent pas être copiés, ni communiqués à un tiers sans l’autorisation 
+préalable et écrite de Sagemcom. 
+35
+• 
+Test TX_5G_4 : HE-MCS11 vHT80 (mode 802.11ax) 
+ 
+For All Listed Frequencies and Modulation, we measure Output Power, EVM and Freq Accuracy on each 
+channel on each antenna. 
+ 13 
+ 
+Frequency 
+5290MHz 
+Modulation 
+HE-MCS11 vHT80 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+11.5 
+9.5 
+13.5 
+dBm 
+EVM 
+NA 
+NA 
+-35 
+dB 
+MASK (1) 
+NA 
+0 
+NA 
+dB 
+Frequency tolerance 
+NA 
+-20 
++20 
+ppm 
+LO Leakage  
+NA 
+-99 
+-32 
+dB 
+ 
+Frequency 
+5530MHz 
+Modulation 
+HE-MCS11 vHT80 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+11.5 
+9.5 
+13.5 
+dBm 
+EVM 
+NA 
+NA 
+-35 
+dB 
+MASK (1) 
+NA 
+0 
+NA 
+dB 
+Frequency tolerance 
+NA 
+-20 
++20 
+ppm 
+LO Leakage  
+NA 
+-99 
+-32 
+dB 
+ 
+Frequency 
+5690MHz 
+Modulation 
+HE-MCS11 vHT80 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+11.5 
+9.5 
+13.5 
+dBm 
+EVM 
+NA 
+NA 
+-35 
+dB 
+MASK (1) 
+NA 
+0 
+NA 
+dB 
+Frequency tolerance 
+NA 
+-20 
++20 
+ppm 
+LO Leakage  
+NA 
+-99 
+-32 
+dB 
+ 
+Frequency 
+5775MHz 
+Modulation 
+HE-MCS11 vHT80 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+11.5 
+9.5 
+13.5 
+dBm 
+EVM 
+NA 
+NA 
+-35 
+dB 
+MASK (1) 
+NA 
+0 
+NA 
+dB 
+Frequency tolerance 
+NA 
+-20 
++20 
+ppm 
+LO Leakage  
+NA 
+-99 
+-32 
+dB 
+ (1) should comply with IEEE80211ax
+
+--- passage 11 | page 29 | score=0.466 ---
+Ce document et les informations qu'il contient sont la propriété de Sagemcom. Ils ne doivent pas être copiés, ni communiqués à un tiers sans l’autorisation 
+préalable et écrite de Sagemcom. 
+29
+ 
+• 
+Test TX_2G_3 : HE-MCS9 HT20 (mode 802.11ax) 
+15 
+ 
+Frequency 
+2472MHz 
+Modulation 
+HE-MCS9 HT20 
+ 
+Target 
+Min 
+Max 
+Unit 
+Power 
+13.5 
+11.5 
+15.5 
+dBm 
+EVM 
+NA 
+NA 
+-32 
+dB 
+MASK (1) 
+NA 
+PASS 
+PASS 
+- 
+Frequency tolerance 
+NA 
+-25 
++25 
+ppm 
+LO Leakage  
+NA 
+-99 
+-32 
+dB 
+(1) should comply with IEEE80211ax
+
+--- passage 12 | page 8 | score=0.463 ---
+Ce document et les informations qu'il contient sont la propriété de Sagemcom. Ils ne doivent pas être copiés, ni communiqués à un tiers sans l’autorisation 
+préalable et écrite de Sagemcom. 
+8
+Part 6. 
+In Circuit Test 
+6.1 Power Controls 
+  
+  
+  
+  
+Measure 
+Power Signal 
+Test 
+Point 
+Function 
+Voltage 
+Min  
+Max 
+Unit 
+P12V 
+PT1500 
+Input Power 
+12V 
+11.5 
+12.5 
+V 
+P5VP 
+PT15300 
+Main board 
+5V 
+4.75 
+5.25 
+V 
+P3V3C_FE 
+PT1520 
+FrontEnd 
+3.3V 
+3.13 
+3.46 
+V 
+P1V8C_FE_D 
+PT15950 
+FrontEnd 
+1.8V 
+1.71 
+1.89 
+V 
+P1VC_FE 
+PT16100 
+FrontEnd 
+1V 
+0.95 
+1.05 
+V 
+P0V8_AVS_STB_CORE 
+PT15102 
+SoC 
+0.80V 
+0.69 
+0.885 
+V 
+P0V95_AVS_CPU_CORE PT15103 
+SoC 
+0.95V 
+0.69 
+1.03 
+V 
+P0V8C 
+PT15104 
+SoC 
+0.8V 
+0.76 
+0.84 
+V 
+P1V8C 
+PT15105 
+SoC 
+1.8V 
+1.71 
+1.89 
+V 
+P0V8P 
+PT15108 
+SoC 
+0.8V 
+0.76 
+0.84 
+V 
+P1V8P 
+PT15110 
+SoC 
+1.8V 
+1.71 
+1.89 
+V 
+P1V8_LPDDR4 
+PT15109 
+DDR 
+1.8V 
+1.71 
+1.89 
+V 
+P3V3P 
+PT15113 
+SoC 
+3.3V 
+3.13 
+3.46 
+V 
+P0V6_LPDDR4 
+PT15101 
+DDR 
+0.6V 
+0.54 
+0.66 
+V 
+P1V1_LPDDR4 
+PT15100 
+DDR 
+1.1V 
+1.04 
+1.16 
+V 
+ 
+6.2 Continuity test for the FE connector on TOP side 
+Check the continuity between PT2300/PT2301 and GND. 
+ 
+  
+  
+Measure 
+Signal 
+Test 
+Point 
+Min  
+Max 
+Unit 
+GND  
+PT2300 
+/ 
+2 
+Ω 
+GND  
+PT2301 
+/ 
+2 
+Ω
+

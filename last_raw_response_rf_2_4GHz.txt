@@ -1,0 +1,131 @@
+{
+  "RF_Tests": [
+    {
+      "Test": "TX: MCS0 HT20, RX PER: LE 1M PRBS",
+      "Frequency": "2412MHz",
+      "Modulation": "MCS0 HT20",
+      "Limits": [
+        {"Parameter": "Power", "Min": "20.5", "Max": "18.5", "Unit": "dBm"},
+        {"Parameter": "EVM", "Min": "NA", "Max": "NA", "Unit": ""},
+        {"Parameter": "Frequency Tolerance", "Min": "NA", "Max": "-25", "Unit": "ppm"},
+        {"Parameter": "LO Leakage", "Min": "NA", "Max": "-99", "Unit": "dB"},
+        {"Parameter": "PER", "Min": "NA", "Max": "NA", "Unit": ""}
+      ]
+    },
+    {
+      "Test": "TX: MCS7 HT20, RX PER: LE 1M PRBS",
+      "Frequency": "2437MHz",
+      "Modulation": "MCS7 HT20",
+      "Limits": [
+        {"Parameter": "Power", "Min": "19.5", "Max": "17.5", "Unit": "dBm"},
+        {"Parameter": "EVM", "Min": "NA", "Max": "NA", "Unit": ""},
+        {"Parameter": "Frequency Tolerance", "Min": "NA", "Max": "-25", "Unit": "ppm"},
+        {"Parameter": "LO Leakage", "Min": "NA", "Max": "-99", "Unit": "dB"},
+        {"Parameter": "PER", "Min": "NA", "Max": "NA", "Unit": ""}
+      ]
+    },
+    {
+      "Test": "TX: MCS7 HT20, RX PER: LE 1M PRBS",
+      "Frequency": "2462MHz",
+      "Modulation": "MCS7 HT20",
+      "Limits": [
+        {"Parameter": "Power", "Min": "19.5", "Max": "17.5", "Unit": "dBm"},
+        {"Parameter": "EVM", "Min": "NA", "Max": "NA", "Unit": ""},
+        {"Parameter": "Frequency Tolerance", "Min": "NA", "Max": "-25", "Unit": "ppm"},
+        {"Parameter": "LO Leakage", "Min": "NA", "Max": "-99", "Unit": "dB"},
+        {"Parameter": "PER", "Min": "NA", "Max": "NA", "Unit": ""}
+      ]
+    },
+    {
+      "Test": "TX: MCS0 vHT20, RX PER: LE 1M PRBS",
+      "Frequency": "5180MHz",
+      "Modulation": "MCS0 vHT20",
+      "Limits": [
+        {"Parameter": "Power", "Min": "19.5", "Max": "17.5", "Unit": "dBm"},
+        {"Parameter": "EVM", "Min": "NA", "Max": "NA", "Unit": ""},
+        {"Parameter": "Frequency Tolerance", "Min": "NA", "Max": "-20", "Unit": "ppm"},
+        {"Parameter": "LO Leakage", "Min": "NA", "Max": "-99", "Unit": "dB"},
+        {"Parameter": "PER", "Min": "NA", "Max": "NA", "Unit": ""}
+      ]
+    },
+    {
+      "Test": "TX: MCS9 vHT40, RX PER: LE 1M PRBS",
+      "Frequency": "5230MHz",
+      "Modulation": "MCS9 vHT40",
+      "Limits": [
+        {"Parameter": "Power", "Min": "13.5", "Max": "11.5", "Unit": "dBm"},
+        {"Parameter": "EVM", "Min": "NA", "Max": "NA", "Unit": ""},
+        {"Parameter": "Frequency Tolerance", "Min": "NA", "Max": "-20", "Unit": "ppm"},
+        {"Parameter": "LO Leakage", "Min": "NA", "Max": "-99", "Unit": "dB"},
+        {"Parameter": "PER", "Min": "NA", "Max": "NA", "Unit": ""}
+      ]
+    },
+    {
+      "Test": "TX: HE-MCS11 vHT80, RX PER: LE 1M PRBS",
+      "Frequency": "5290MHz",
+      "Modulation": "HE-MCS11 vHT80",
+      "Limits": [
+        {"Parameter": "Power", "Min": "11.5", "Max": "9.5", "Unit": "dBm"},
+        {"Parameter": "EVM", "Min": "NA", "Max": "NA", "Unit": ""},
+        {"Parameter": "Frequency Tolerance", "Min": "NA", "Max": "-20", "Unit": "ppm"},
+        {"Parameter": "LO Leakage", "Min": "NA", "Max": "-99", "Unit": "dB"},
+        {"Parameter": "PER", "Min": "NA", "Max": "NA", "Unit": ""}
+      ]
+    },
+    {
+      "Test": "TX: HE-MCS11 vHT80, RX PER: LE 1M PRBS",
+      "Frequency": "5530MHz",
+      "Modulation": "HE-MCS11 vHT80",
+      "Limits": [
+        {"Parameter": "Power", "Min": "11.5", "Max": "9.5", "Unit": "dBm"},
+        {"Parameter": "EVM", "Min": "NA", "Max": "NA", "Unit": ""},
+        {"Parameter": "Frequency Tolerance", "Min": "NA", "Max": "-20", "Unit": "ppm"},
+        {"Parameter": "LO Leakage", "Min": "NA", "Max": "-99", "Unit": "dB"},
+        {"Parameter": "PER", "Min": "NA", "Max": "NA", "Unit": ""}
+      ]
+    },
+    {
+      "Test": "TX: HE-MCS11 vHT80, RX PER: LE 1M PRBS",
+      "Frequency": "5690MHz",
+      "Modulation": "HE-MCS11 vHT80",
+      "Limits": [
+        {"Parameter": "Power", "Min": "11.5", "Max": "9.5", "Unit": "dBm"},
+        {"Parameter": "EVM", "Min": "NA", "Max": "NA", "Unit": ""},
+        {"Parameter": "Frequency Tolerance", "Min": "NA", "Max": "-20", "Unit": "ppm"},
+        {"Parameter": "LO Leakage", "Min": "NA", "Max": "-99", "Unit": "dB"},
+        {"Parameter": "PER", "Min": "NA", "Max": "NA", "Unit": ""}
+      ]
+    },
+    {
+      "Test": "TX: HE-MCS11 vHT80, RX PER: LE 1M PRBS",
+      "Frequency": "5775MHz",
+      "Modulation": "HE-MCS11 vHT80",
+      "Limits": [
+        {"Parameter": "Power", "Min": "11.5", "Max": "9.5", "Unit": "dBm"},
+        {"Parameter": "EVM", "Min": "NA", "Max": "NA", "Unit": ""},
+        {"Parameter": "Frequency Tolerance", "Min": "NA", "Max": "-20", "Unit": "ppm"},
+        {"Parameter": "LO Leakage", "Min": "NA", "Max": "-99", "Unit": "dB"},
+        {"Parameter": "PER", "Min": "NA", "Max": "NA", "Unit": ""}
+      ]
+    },
+    {
+      "Test": "TX: HE-MCS9 HT20, RX PER: LE 1M PRBS",
+      "Frequency": "2472MHz",
+      "Modulation": "HE-MCS9 HT20",
+      "Limits": [
+        {"Parameter": "Power", "Min": "18.5", "Max": "16.5", "Unit": "dBm"},
+        {"Parameter": "EVM", "Min": "NA", "Max": "NA", "Unit": ""},
+        {"Parameter": "Frequency Tolerance", "Min": "NA", "Max": "-25", "Unit": "ppm"},
+        {"Parameter": "LO Leakage", "Min": "NA", "Max": "-99", "Unit": "dB"},
+        {"Parameter": "PER", "Min": "NA", "Max": "NA", "Unit": ""}
+      ]
+    },
+    {
+      "Test": "TX: HE-MCS0 vHT80, RX PER: LE 1M PRBS",
+      "Frequency": "5530MHz",
+      "Modulation": "HE-MCS0 vHT80",
+      "Limits": [
+        {"Parameter": "Power", "Min": "15.5", "Max": "13.5", "Unit": "dBm"},
+        {"Parameter": "EVM", "Min": "NA", "Max": "NA", "Unit": ""},
+        {"Parameter": "Frequency Tolerance", "Min": "NA", "Max": "-20", "Unit": "ppm"},
+        {"Parameter": "LO Leakage", "Min": "NA", "Max": "-99", "Unit": "dB"},

@@ -1,0 +1,1270 @@
+{
+  "classic": {
+    "Bluetooth": [
+      {
+        "EntryKind": "TX: 1-DH5 PRBS",
+        "Frequency": 2402,
+        "Modulation": "1-DH5 PRBS",
+        "Power Target": 5.0,
+        "Power Min": 2.5,
+        "Power Max": 7.5
+      },
+      {
+        "EntryKind": "TX: 1-DH5 PRBS",
+        "Frequency": 2480,
+        "Modulation": "1-DH5 PRBS",
+        "Power Target": 5.0,
+        "Power Min": 2.5,
+        "Power Max": 7.5
+      },
+      {
+        "EntryKind": "TX: 3-DH5 PRBS",
+        "Frequency": 2402,
+        "Modulation": "3-DH5 PRBS",
+        "Power Target": 5.0,
+        "Power Min": 2.5,
+        "Power Max": 7.5
+      },
+      {
+        "EntryKind": "TX: LE 1M PRBS",
+        "Frequency": 2402,
+        "Modulation": "LE 1M PRBS",
+        "Power Target": 5.0,
+        "Power Min": 2.5,
+        "Power Max": 7.5
+      },
+      {
+        "EntryKind": "TX: LE 1M PRBS",
+        "Frequency": 2480,
+        "Modulation": "LE 1M PRBS",
+        "Power Target": 5.0,
+        "Power Min": 2.5,
+        "Power Max": 7.5
+      },
+      {
+        "EntryKind": "RX PER: LE 1M PRBS",
+        "Frequency": 2442,
+        "Modulation": "LE 1M PRBS",
+        "RX Power (dBm)": -97,
+        "PER Min (%)": 0.0,
+        "PER Max (%)": 30.0
+      }
+    ],
+    "2.4GHz": [
+      {
+        "EntryKind": "TX: MCS0 HT20",
+        "Frequency": 2412,
+        "Modulation": "MCS0 HT20",
+        "Power Target": 19.5,
+        "Power Min": 17.5,
+        "Power Max": 21.5,
+        "EVM Max": -5,
+        "Frequency Tolerance Min": -25,
+        "Frequency Tolerance Max": 25,
+        "LO Leakage Min": -99.0,
+        "LO Leakage Max": -15.0
+      },
+      {
+        "EntryKind": "TX: MCS7 HT20",
+        "Frequency": 2437,
+        "Modulation": "MCS7 HT20",
+        "Power Target": 19.5,
+        "Power Min": 17.5,
+        "Power Max": 21.5,
+        "EVM Max": -28,
+        "Frequency Tolerance Min": -25,
+        "Frequency Tolerance Max": 25,
+        "LO Leakage Min": -99.0,
+        "LO Leakage Max": -15.0
+      },
+      {
+        "EntryKind": "TX: MCS7 HT20",
+        "Frequency": 2462,
+        "Modulation": "MCS7 HT20",
+        "Power Target": 19.5,
+        "Power Min": 17.5,
+        "Power Max": 21.5,
+        "EVM Max": -28,
+        "Frequency Tolerance Min": -25,
+        "Frequency Tolerance Max": 25,
+        "LO Leakage Min": -99.0,
+        "LO Leakage Max": -15.0
+      },
+      {
+        "EntryKind": "TX: HE-MCS9 HT20",
+        "Frequency": 2472,
+        "Modulation": "HE-MCS9 HT20",
+        "Power Target": 18.5,
+        "Power Min": 16.5,
+        "Power Max": 20.5,
+        "EVM Max": -32,
+        "Frequency Tolerance Min": -25,
+        "Frequency Tolerance Max": 25,
+        "LO Leakage Min": -99.0,
+        "LO Leakage Max": -32.0
+      },
+      {
+        "EntryKind": "RX PER: MCS0 HT20",
+        "Frequency": 2412,
+        "Modulation": "MCS0 HT20",
+        "RX Power (dBm)": -93,
+        "PER Min (%)": 0.0,
+        "PER Max (%)": 10.0
+      },
+      {
+        "EntryKind": "RX PER: MCS7 HT20",
+        "Frequency": 2437,
+        "Modulation": "MCS7 HT20",
+        "RX Power (dBm)": -74,
+        "PER Min (%)": 0.0,
+        "PER Max (%)": 10.0
+      },
+      {
+        "EntryKind": "RX PER: HE-MCS9 HT20",
+        "Frequency": 2472,
+        "Modulation": "HE-MCS9 HT20",
+        "RX Power (dBm)": -71,
+        "PER Min (%)": 0.0,
+        "PER Max (%)": 10.0
+      }
+    ],
+    "5GHz": [
+      {
+        "EntryKind": "TX: MCS0 vHT20",
+        "Frequency": 5180,
+        "Modulation": "MCS0 vHT20",
+        "Power Target": 20.5,
+        "Power Min": 18.5,
+        "Power Max": 22.5,
+        "EVM Max": -5,
+        "Frequency Tolerance Min": -20,
+        "Frequency Tolerance Max": 20,
+        "LO Leakage Min": -99.0,
+        "LO Leakage Max": -17.5
+      },
+      {
+        "EntryKind": "TX: MCS9 vHT40",
+        "Frequency": 5230,
+        "Modulation": "MCS9 vHT40",
+        "Power Target": 16.5,
+        "Power Min": 14.5,
+        "Power Max": 18.5,
+        "EVM Max": -32,
+        "Frequency Tolerance Min": -20,
+        "Frequency Tolerance Max": 20,
+        "LO Leakage Min": -99.0,
+        "LO Leakage Max": -20.6
+      },
+      {
+        "EntryKind": "TX: HE-MCS0 vHT80",
+        "Frequency": 5530,
+        "Modulation": "HE-MCS0 vHT80",
+        "Power Target": 17.5,
+        "Power Min": 15.5,
+        "Power Max": 19.5,
+        "EVM Max": -5,
+        "Frequency Tolerance Min": -20,
+        "Frequency Tolerance Max": 20,
+        "LO Leakage Min": -99.0,
+        "LO Leakage Max": -32.0
+      },
+      {
+        "EntryKind": "TX: HE-MCS0 vHT80",
+        "Frequency": 5690,
+        "Modulation": "HE-MCS0 vHT80",
+        "Power Target": 17.5,
+        "Power Min": 15.5,
+        "Power Max": 19.5,
+        "EVM Max": -5,
+        "Frequency Tolerance Min": -20,
+        "Frequency Tolerance Max": 20,
+        "LO Leakage Min": -99.0,
+        "LO Leakage Max": -32.0
+      },
+      {
+        "EntryKind": "TX: HE-MCS11 vHT80",
+        "Frequency": 5290,
+        "Modulation": "HE-MCS11 vHT80",
+        "Power Target": 14.5,
+        "Power Min": 12.5,
+        "Power Max": 16.5,
+        "EVM Max": -35,
+        "Frequency Tolerance Min": -20,
+        "Frequency Tolerance Max": 20,
+        "LO Leakage Min": -99.0,
+        "LO Leakage Max": -32.0
+      },
+      {
+        "EntryKind": "TX: HE-MCS11 vHT80",
+        "Frequency": 5530,
+        "Modulation": "HE-MCS11 vHT80",
+        "Power Target": 14.5,
+        "Power Min": 12.5,
+        "Power Max": 16.5,
+        "EVM Max": -35,
+        "Frequency Tolerance Min": -20,
+        "Frequency Tolerance Max": 20,
+        "LO Leakage Min": -99.0,
+        "LO Leakage Max": -32.0
+      },
+      {
+        "EntryKind": "TX: HE-MCS11 vHT80",
+        "Frequency": 5690,
+        "Modulation": "HE-MCS11 vHT80",
+        "Power Target": 14.5,
+        "Power Min": 12.5,
+        "Power Max": 16.5,
+        "EVM Max": -35,
+        "Frequency Tolerance Min": -20,
+        "Frequency Tolerance Max": 20,
+        "LO Leakage Min": -99.0,
+        "LO Leakage Max": -32.0
+      },
+      {
+        "EntryKind": "TX: HE-MCS11 vHT80",
+        "Frequency": 5775,
+        "Modulation": "HE-MCS11 vHT80",
+        "Power Target": 14.5,
+        "Power Min": 12.5,
+        "Power Max": 16.5,
+        "EVM Max": -35,
+        "Frequency Tolerance Min": -20,
+        "Frequency Tolerance Max": 20,
+        "LO Leakage Min": -99.0,
+        "LO Leakage Max": -32.0
+      },
+      {
+        "EntryKind": "RX PER: MCS0 vHT20",
+        "Frequency": 5180,
+        "Modulation": "MCS0 vHT20",
+        "RX Power (dBm)": -91,
+        "PER Min (%)": 0.0,
+        "PER Max (%)": 10.0
+      },
+      {
+        "EntryKind": "RX PER: MCS0 vHT20",
+        "Frequency": 5500,
+        "Modulation": "MCS0 vHT20",
+        "RX Power (dBm)": -91,
+        "PER Min (%)": 0.0,
+        "PER Max (%)": 10.0
+      },
+      {
+        "EntryKind": "RX PER: MCS0 vHT20",
+        "Frequency": 5700,
+        "Modulation": "MCS0 vHT20",
+        "RX Power (dBm)": -91,
+        "PER Min (%)": 0.0,
+        "PER Max (%)": 10.0
+      },
+      {
+        "EntryKind": "RX PER: MCS0 vHT20",
+        "Frequency": 5825,
+        "Modulation": "MCS0 vHT20",
+        "RX Power (dBm)": -91,
+        "PER Min (%)": 0.0,
+        "PER Max (%)": 10.0
+      },
+      {
+        "EntryKind": "RX PER: HE-MCS11 vHT80",
+        "Frequency": 5210,
+        "Modulation": "HE-MCS11 vHT80",
+        "RX Power (dBm)": -57,
+        "PER Min (%)": 0.0,
+        "PER Max (%)": 10.0
+      },
+      {
+        "EntryKind": "RX PER: HE-MCS11 vHT80",
+        "Frequency": 5530,
+        "Modulation": "HE-MCS11 vHT80",
+        "RX Power (dBm)": -57,
+        "PER Min (%)": 0.0,
+        "PER Max (%)": 10.0
+      },
+      {
+        "EntryKind": "RX PER: HE-MCS11 vHT80",
+        "Frequency": 5775,
+        "Modulation": "HE-MCS11 vHT80",
+        "RX Power (dBm)": -57,
+        "PER Min (%)": 0.0,
+        "PER Max (%)": 10.0
+      }
+    ]
+  },
+  "rag": {
+    "RF_Tests": [
+      {
+        "Test": "TX_BR",
+        "Frequency": "2402MHz",
+        "Modulation": "1-DH5 PRBS",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "2.5",
+            "Max": "7.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "PER",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "5",
+            "Max": "7.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency drift",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          },
+          {
+            "Parameter": "Max drift rate",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz/50µs"
+          },
+          {
+            "Parameter": "Frequency deviation df2",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          }
+        ],
+        "Band": "Bluetooth"
+      },
+      {
+        "Test": "TX_EDR",
+        "Frequency": "2402MHz",
+        "Modulation": "3-DH5 PRBS",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "2.5",
+            "Max": "7.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "PER",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency drift",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          },
+          {
+            "Parameter": "Max drift rate",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz/50µs"
+          },
+          {
+            "Parameter": "Frequency deviation df2",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          }
+        ],
+        "Band": "Bluetooth"
+      },
+      {
+        "Test": "RX_BR",
+        "Frequency": "2480MHz",
+        "Modulation": "1-DH5 PRBS",
+        "Limits": [
+          {
+            "Parameter": "BER",
+            "Min": "0",
+            "Max": "0.1",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "PER",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency drift",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          },
+          {
+            "Parameter": "Max drift rate",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz/50µs"
+          },
+          {
+            "Parameter": "Frequency deviation df2",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          }
+        ],
+        "Band": "Bluetooth"
+      },
+      {
+        "Test": "RX_EDR",
+        "Frequency": "2402MHz",
+        "Modulation": "3-DH5 PRBS",
+        "Limits": [
+          {
+            "Parameter": "BER",
+            "Min": "0",
+            "Max": "0.1",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "PER",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency drift",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          },
+          {
+            "Parameter": "Max drift rate",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz/50µs"
+          },
+          {
+            "Parameter": "Frequency deviation df2",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          }
+        ],
+        "Band": "Bluetooth"
+      },
+      {
+        "Test": "RX_BLE",
+        "Frequency": "2442MHz",
+        "Modulation": "LE 1M PRBS",
+        "Limits": [
+          {
+            "Parameter": "PER",
+            "Min": "0",
+            "Max": "30",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "5",
+            "Max": "7.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency drift",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          },
+          {
+            "Parameter": "Max drift rate",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz/50µs"
+          },
+          {
+            "Parameter": "Frequency deviation df2",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          }
+        ],
+        "Band": "Bluetooth"
+      },
+      {
+        "Test": "TX_BLE",
+        "Frequency": "2402MHz",
+        "Modulation": "LE 1M PRBS",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "2.5",
+            "Max": "7.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency drift",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          },
+          {
+            "Parameter": "Max drift rate",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz/50µs"
+          },
+          {
+            "Parameter": "Frequency deviation df2",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          }
+        ],
+        "Band": "Bluetooth"
+      },
+      {
+        "Test": "TX_BLE",
+        "Frequency": "2480MHz",
+        "Modulation": "LE 1M PRBS",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "2.5",
+            "Max": "7.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency drift",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          },
+          {
+            "Parameter": "Max drift rate",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz/50µs"
+          },
+          {
+            "Parameter": "Frequency deviation df2",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "kHz"
+          }
+        ],
+        "Band": "Bluetooth"
+      },
+      {
+        "Test": "TX_2G_1",
+        "Frequency": "2412MHz",
+        "Modulation": "MCS0 HT20",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "19.5",
+            "Max": "17.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "EVM",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "-25",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "-99",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "2.4GHz"
+      },
+      {
+        "Test": "TX_2G_2",
+        "Frequency": "2437MHz",
+        "Modulation": "MCS7 HT20",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "19.5",
+            "Max": "17.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "EVM",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "-25",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "-99",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "2.4GHz"
+      },
+      {
+        "Test": "TX_2G_3",
+        "Frequency": "2462MHz",
+        "Modulation": "MCS7 HT20",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "19.5",
+            "Max": "17.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "EVM",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "-25",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "-99",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "2.4GHz"
+      },
+      {
+        "Test": "RX_2G_1",
+        "Frequency": "2412MHz",
+        "Modulation": "MCS0 HT20",
+        "Limits": [
+          {
+            "Parameter": "PER",
+            "Min": "-96",
+            "Max": "0",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "-93",
+            "Max": "-93",
+            "Unit": "dBm"
+          }
+        ],
+        "Band": "2.4GHz"
+      },
+      {
+        "Test": "RX_2G_2",
+        "Frequency": "2437MHz",
+        "Modulation": "MCS7 HT20",
+        "Limits": [
+          {
+            "Parameter": "PER",
+            "Min": "-77",
+            "Max": "0",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "-74",
+            "Max": "-74",
+            "Unit": "dBm"
+          }
+        ],
+        "Band": "2.4GHz"
+      },
+      {
+        "Test": "RX_2G_3",
+        "Frequency": "2472MHz",
+        "Modulation": "HE-MCS9 HT20",
+        "Limits": [
+          {
+            "Parameter": "PER",
+            "Min": "-74",
+            "Max": "0",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "-71",
+            "Max": "-71",
+            "Unit": "dBm"
+          }
+        ],
+        "Band": "2.4GHz"
+      },
+      {
+        "Test": "TX_5G_1",
+        "Frequency": "5180MHz",
+        "Modulation": "MCS0 vHT20",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "20.5",
+            "Max": "18.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "EVM",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "-20",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "-99",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "TX_5G_2",
+        "Frequency": "5230MHz",
+        "Modulation": "MCS9 vHT40",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "16.5",
+            "Max": "14.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "EVM",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "-20",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "-99",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "TX_5G_4",
+        "Frequency": "5290MHz",
+        "Modulation": "HE-MCS11 vHT80",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "14.5",
+            "Max": "12.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "EVM",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "-20",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "-99",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "TX_5G_4",
+        "Frequency": "5530MHz",
+        "Modulation": "HE-MCS11 vHT80",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "14.5",
+            "Max": "12.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "EVM",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "-20",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "-99",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "TX_5G_4",
+        "Frequency": "5690MHz",
+        "Modulation": "HE-MCS11 vHT80",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "14.5",
+            "Max": "12.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "EVM",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "-20",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "-99",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "TX_5G_4",
+        "Frequency": "5775MHz",
+        "Modulation": "HE-MCS11 vHT80",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "14.5",
+            "Max": "12.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "EVM",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "-20",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "-99",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "TX_5G_3",
+        "Frequency": "5530MHz",
+        "Modulation": "HE-MCS0 vHT80",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "17.5",
+            "Max": "15.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "EVM",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "-20",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "-99",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "TX_5G_3",
+        "Frequency": "5690MHz",
+        "Modulation": "HE-MCS0 vHT80",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "17.5",
+            "Max": "15.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "EVM",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "-20",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "-99",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "RX_5G_1",
+        "Frequency": "5180MHz",
+        "Modulation": "MCS0 vHT20",
+        "Limits": [
+          {
+            "Parameter": "PER",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "-94",
+            "Max": "-94",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "RX_5G_1",
+        "Frequency": "5500MHz",
+        "Modulation": "MCS0 vHT20",
+        "Limits": [
+          {
+            "Parameter": "PER",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "-91",
+            "Max": "-91",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "RX_5G_1",
+        "Frequency": "5700MHz",
+        "Modulation": "MCS0 vHT20",
+        "Limits": [
+          {
+            "Parameter": "PER",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "-91",
+            "Max": "-91",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "RX_5G_1",
+        "Frequency": "5825MHz",
+        "Modulation": "MCS0 vHT20",
+        "Limits": [
+          {
+            "Parameter": "PER",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "-91",
+            "Max": "-91",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "RX_5G_2",
+        "Frequency": "5210MHz",
+        "Modulation": "HE-MCS11 vHT80",
+        "Limits": [
+          {
+            "Parameter": "PER",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "-60",
+            "Max": "-60",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "RX_5G_2",
+        "Frequency": "5530MHz",
+        "Modulation": "HE-MCS11 vHT80",
+        "Limits": [
+          {
+            "Parameter": "PER",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "-57",
+            "Max": "-57",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "RX_5G_2",
+        "Frequency": "5775MHz",
+        "Modulation": "HE-MCS11 vHT80",
+        "Limits": [
+          {
+            "Parameter": "PER",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "%"
+          },
+          {
+            "Parameter": "RX Power",
+            "Min": "-57",
+            "Max": "-57",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      },
+      {
+        "Test": "TX_2G_3",
+        "Frequency": "2472MHz",
+        "Modulation": "HE-MCS9 HT20",
+        "Limits": [
+          {
+            "Parameter": "Power",
+            "Min": "18.5",
+            "Max": "16.5",
+            "Unit": "dBm"
+          },
+          {
+            "Parameter": "EVM",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          },
+          {
+            "Parameter": "Frequency Tolerance",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "ppm"
+          },
+          {
+            "Parameter": "LO Leakage",
+            "Min": "NA",
+            "Max": "NA",
+            "Unit": "dB"
+          }
+        ],
+        "Band": "5GHz"
+      }
+    ]
+  },
+  "nb_entries_classic": 28,
+  "nb_entries_rag": 29
+}

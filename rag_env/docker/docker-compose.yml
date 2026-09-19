@@ -1,0 +1,54 @@
+# docker-compose.yml — Base vectorielle Qdrant pour telecom_validator / rag_env
+#
+# Lancement :
+#   cd rag_env/docker
+#   docker compose up -d
+#
+# Qdrant expose :
+#   - 6333 : API REST + dashboard web (http://localhost:6333/dashboard)
+#   - 6334 : API gRPC (plus rapide pour l'ingestion en masse)
+#
+# Pourquoi Qdrant plutôt que Weaviate ici :
+#   - un seul binaire/conteneur, pas de dépendances supplémentaires (pas besoin
+#     d'un module "text2vec-*" séparé comme chez Weaviate)
+#   - supporte la recherche hybride (dense + sparse/BM25) nativement depuis 1.10+
+#   - un mode "local" embarqué existe aussi (QdrantClient(path=...)) pour des
+#     tests rapides sans Docker — voir modules_rag/retriever.py
+#
+# Si vous préférez Weaviate (ex. besoin de modules text2vec intégrés), un
+# service alternatif commenté est fourni plus bas.
+
+version: "3.8"
+
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: telecom_rag_qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    environment:
+      QDRANT__SERVICE__GRPC_PORT: 6334
+
+  # ── Alternative Weaviate (décommenter si préféré à Qdrant) ─────────────
+  # weaviate:
+  #   image: semitechnologies/weaviate:latest
+  #   container_name: telecom_rag_weaviate
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8080:8080"
+  #     - "50051:50051"
+  #   environment:
+  #     QUERY_DEFAULTS_LIMIT: 25
+  #     AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: "true"
+  #     PERSISTENCE_DATA_PATH: "/var/lib/weaviate"
+  #     DEFAULT_VECTORIZER_MODULE: "none"
+  #   volumes:
+  #     - weaviate_storage:/var/lib/weaviate
+
+volumes:
+  qdrant_storage:
+  # weaviate_storage:
