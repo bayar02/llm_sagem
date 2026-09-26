@@ -8,6 +8,7 @@ This script performs read-only checks and never modifies data.
 It is safe to run repeatedly.
 """
 import importlib
+import importlib.util
 import os
 import sys
 
@@ -35,7 +36,7 @@ def check_core_packages():
 
 
 def check_rag_packages():
-    required = ["qdrant_client", "sentence_transformers"]
+    required = ["qdrant_client", "sentence_transformers", "rank_bm25"]
     missing = [pkg for pkg in required if importlib.util.find_spec(pkg) is None]
     if missing:
         raise RuntimeError(
@@ -80,7 +81,7 @@ def check_env_file_present():
 def main():
     check("Python version", check_python_version)
     check("Core packages (streamlit, fitz, requests)", check_core_packages)
-    check("RAG packages (qdrant_client, sentence_transformers)", check_rag_packages)
+    check("RAG packages (qdrant_client, sentence_transformers, rank_bm25)", check_rag_packages)
     check("Local RAG module imports (rag_retriever)", check_local_rag_imports)
     check(".env file present", check_env_file_present)
     check("Ollama reachable", check_ollama)
