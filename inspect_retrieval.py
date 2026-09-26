@@ -1,6 +1,6 @@
 import sys
 sys.path.insert(0, "rag_env/modules_rag")
-from retriever import hybrid_search
+from rag_retriever import hybrid_search
 
 passages = hybrid_search(
     query="limites de test FE Viterbi BER RSSI Carrier-to-Noise Frequency Offset Rate Offset",

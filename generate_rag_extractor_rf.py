@@ -16,7 +16,7 @@ import sys
 import json
 from typing import Dict, Any, List
 
-from retriever import hybrid_search
+from rag_retriever import hybrid_search
 from llm_router import call_llm, count_tokens
 from icp_wifi_extract import extract_rf_limits
 
