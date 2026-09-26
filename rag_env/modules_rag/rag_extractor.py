@@ -51,7 +51,7 @@ from typing import List, Dict, Any
 
 from dotenv import load_dotenv
 
-from retriever import hybrid_search
+from rag_retriever import hybrid_search
 from llm_router import call_llm, count_tokens
 
 load_dotenv()

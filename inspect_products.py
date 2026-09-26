@@ -1,7 +1,7 @@
 import sys, os
 sys.path.insert(0, os.path.join(os.getcwd(), "rag_env", "modules_rag"))
 
-from retriever import _get_client, QDRANT_COLLECTION
+from rag_retriever import _get_client, QDRANT_COLLECTION
 
 client = _get_client()
 

@@ -3,7 +3,7 @@ import sys, os
 sys.path.insert(0, os.path.join(os.getcwd(), "rag_env", "modules_rag"))
 
 from rag_extractor_rf import BAND_QUERIES
-from retriever import hybrid_search
+from rag_retriever import hybrid_search
 
 query = BAND_QUERIES["Bluetooth"]
 print("QUERY:", query)
